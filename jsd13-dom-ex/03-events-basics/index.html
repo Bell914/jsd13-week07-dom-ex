@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Events Basics</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #333;
+      cursor: pointer;
+    }
+    .box.hover { background: #cde; }
+  </style>
+</head>
+<body>
+  <div id="box" class="box">Hover or click me</div>
+  <p id="log"></p>
+  <p>Press any key: <span id="key-display">(none yet)</span></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
