@@ -10,7 +10,7 @@ const feedback = document.getElementById("feedback");
 // TODO 2: Add an "input" listener on #name-input. Every time the user types,
 // set char-count's textContent to the current length of the input's value
 // (name-input.value.length).
-nameInput.addEventListener("input", function(event) {
+nameInput.addEventListener("input", (event) => {
   charCount.textContent = nameInput.value.length;
 });
 
@@ -19,7 +19,7 @@ nameInput.addEventListener("input", function(event) {
 //   - read and trim the name input's value
 //   - if it's empty, set feedback's textContent to "Name required"
 //   - otherwise, set feedback's textContent to `Welcome, ${name}!`
-signupForm.addEventListener("submit", function(event) {
+signupForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const name = nameInput.value.trim();

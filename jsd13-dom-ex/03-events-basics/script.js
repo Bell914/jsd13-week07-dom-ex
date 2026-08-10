@@ -10,7 +10,7 @@ const keyDisplay = document.getElementById("key-display");
 // "Box clicked!". Inside the same listener, console.log() the event's
 // event.type and event.target (the event object is the first argument
 // your listener function receives).
-box.addEventListener("click", function(event) {
+box.addEventListener("click", (event) => {
   log.textContent = "Box clicked!";
   console.log(event.type);
   console.log(event.target);
@@ -18,16 +18,16 @@ box.addEventListener("click", function(event) {
 
 // TODO 3: Add a "mouseover" listener on #box that adds the "hover" class
 // to it, and a "mouseout" listener that removes the "hover" class.
-box.addEventListener("mouseover", function() {
+box.addEventListener("mouseover", (event) => {
   box.classList.add("hover");
 });
 
-box.addEventListener("mouseout", function() {
+box.addEventListener("mouseout",(event) => {
   box.classList.remove("hover");
 });
 
 // TODO 4: Add a "keydown" listener on the whole document. Inside it, set
 // key-display's textContent to event.key (the key that was pressed).
-document.addEventListener("keydown", function(event) {
+document.addEventListener("keydown", (event) =>{
   keyDisplay.textContent = event.key;
 });
