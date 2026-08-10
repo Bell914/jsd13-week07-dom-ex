@@ -3,7 +3,11 @@
 // in order. Check your console output after each step.
 
 // TODO 1: Select the <h1 id="title"> element and console.log() it.
+console.log(document.querySelector("title"));
+console.log(document.querySelector("title").textContent);
 
+console.log(document.getElementById("title"));
+console.log(document.getElementById("title").textContent);
 
 // TODO 2: Select the <button id="log-btn"> element and console.log() it too.
 // (Just select and log it for now — you'll learn to react to clicks in the
