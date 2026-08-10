@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DOM Playground</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+        max-width: 700px;
+        background: #fff;
+        color: #111;
+      }
+      h1 {
+        font-size: 22px;
+      }
+      h2 {
+        font-size: 16px;
+        margin-top: 40px;
+        border-top: 1px solid #ccc;
+        padding-top: 20px;
+      }
+      li {
+        margin: 4px 0;
+      }
+
+      .hidden {
+        display: none;
+      }
+      .active {
+        outline: 2px solid red;
+      }
+      .task-item {
+        list-style: none;
+        padding: 4px 8px;
+        background: #eee;
+      }
+      .done {
+        text-decoration: line-through;
+        opacity: 0.6;
+      }
+
+      .error {
+        color: red;
+        font-size: 13px;
+      }
+
+      body.dark-mode {
+        background: #1a1a1a;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 1. Selecting Elements: getElementById / querySelector / querySelectorAll -->
+    <h2>1. Selecting Elements</h2>
+    <h3 id="main-title">Main Title</h3>
+    <button class="submit-btn">Submit</button>
+    <ul>
+      <li class="task">Buy milk</li>
+      <li class="task">Walk dog</li>
+      <li class="task">Read book</li>
+    </ul>
+
+    <!-- 2. Modifying Content: innerText / textContent / innerHTML -->
+    <h2>2. Modifying Content</h2>
+    <p class="label">Original label text</p>
+    <p id="msg">Some message here</p>
+    <div id="card"></div>
+
+    <!-- 3. classList / Dark Mode toggle -->
+    <h2>3. classList</h2>
+    <button id="themeBtn">Toggle Theme</button>
+    <div class="card">A card you can add/remove/toggle classes on</div>
+
+    <!-- 4. createElement / append / remove -->
+    <h2>4. Creating &amp; Removing Elements</h2>
+    <button id="addTaskBtn">Add Task</button>
+    <button id="resetTasksBtn">Clear Tasks</button>
+    <ul id="tasks"></ul>
+
+    <!-- 5. Events: click, delegation, preventDefault -->
+    <h2>5. Events</h2>
+    <button id="click-me">Click Me</button>
+
+    <ul id="list">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+
+    <form id="signupForm">
+      <input id="email" type="email" placeholder="you@example.com" required />
+      <span class="error"></span>
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <!-- 6. Final project: Pokémon Card Fetcher -->
+    <h2>6. Pok&eacute;mon Card Fetcher</h2>
+    <button id="fetchBtn">Get Card</button>
+    <button id="resetBtn">Clear All</button>
+    <div id="gallery"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
