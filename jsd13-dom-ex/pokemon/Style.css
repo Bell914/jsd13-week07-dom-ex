@@ -439,6 +439,57 @@ body {
     right: 20px;
 }
 
+/* ปุ่มสถานะ Pause / Resume */
+.carousel-pause-toggle {
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a2e;
+    color: #f5c518;
+    border: 2px solid #f5c518;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    z-index: 25;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.carousel-pause-toggle span {
+    font-size: 6.5px;
+    color: #94a3b8;
+}
+
+.carousel-pause-toggle:hover {
+    background: #24243e;
+    transform: translateX(-50%) scale(1.05);
+    border-color: #ffd84d;
+}
+
+.carousel-pause-toggle.is-paused {
+    background: #f5385d;
+    color: #ffffff;
+    border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(245, 56, 93, 0.6);
+}
+
+.carousel-pause-toggle.is-paused span {
+    color: #ffe4e8;
+}
+
+/* ไฮไลต์การ์ดที่กำลังเลือกดู */
+.round-carousel-slot.is-inspecting .round-carousel-front {
+    border-color: #f5c518 !important;
+    box-shadow: 0 0 25px rgba(245, 197, 24, 0.7), 0 14px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
 .coverflow-empty-hint {
     color: #2b3a4a;
     font-size: 12px;

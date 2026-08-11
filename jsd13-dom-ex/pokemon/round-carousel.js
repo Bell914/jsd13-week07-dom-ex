@@ -39,13 +39,17 @@ class RoundCarousel {
         this.items = [];
         this.cardElements = [];
         this.rotY = 0;
+        this.targetRotY = null;
         this.vel = 0;
         this.lastTime = 0;
         this.isAlive = true;
+        this.isPaused = false;
+        this.isHovered = false;
         this.isDragging = false;
         this.dragStartX = 0;
         this.dragLastX = 0;
         this.dragDistance = 0;
+        this.activeIndex = 0;
 
         this.initDOM();
         this.bindEvents();
@@ -60,7 +64,7 @@ class RoundCarousel {
         this.container.classList.add('round-carousel-root');
         this.container.style.position = 'relative';
         this.container.style.width = '100%';
-        this.container.style.minHeight = `${this.options.cardHeight + 80}px`;
+        this.container.style.minHeight = `${this.options.cardHeight + 90}px`;
         this.container.style.display = 'flex';
         this.container.style.alignItems = 'center';
         this.container.style.justifyContent = 'center';
@@ -91,11 +95,12 @@ class RoundCarousel {
         this.container.innerHTML = '';
         this.container.appendChild(this.tiltWrapper);
 
-        // ปุ่มลูกศรหมุนซ้าย-ขวา
-        this.createNavButtons();
+        // ปุ่มควบคุม Pause / Play และปุ่มลูกศร
+        this.createControls();
     }
 
-    createNavButtons() {
+    createControls() {
+        // ปุ่มลูกศรซ้าย-ขวา
         this.navPrev = document.createElement('button');
         this.navPrev.className = 'carousel-nav-btn carousel-nav-prev';
         this.navPrev.innerHTML = '◀';
@@ -106,8 +111,20 @@ class RoundCarousel {
         this.navNext.innerHTML = '▶';
         this.navNext.setAttribute('aria-label', 'Rotate Right');
 
+        // ป้าย / ปุ่มสลับ หยุดหมุน (Pause / Resume)
+        this.pauseBtn = document.createElement('button');
+        this.pauseBtn.className = 'carousel-pause-toggle';
+        this.pauseBtn.setAttribute('title', 'คลิกเพื่อหยุดหรือหมุนต่อ');
+        this.updatePauseBtnText();
+
+        this.pauseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.togglePause();
+        });
+
         this.container.appendChild(this.navPrev);
         this.container.appendChild(this.navNext);
+        this.container.appendChild(this.pauseBtn);
 
         this.navPrev.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -122,10 +139,31 @@ class RoundCarousel {
         this.updateNavVisibility();
     }
 
+    togglePause(forceState) {
+        if (typeof forceState === 'boolean') {
+            this.isPaused = forceState;
+        } else {
+            this.isPaused = !this.isPaused;
+        }
+        this.updatePauseBtnText();
+    }
+
+    updatePauseBtnText() {
+        if (!this.pauseBtn) return;
+        if (this.isPaused) {
+            this.pauseBtn.innerHTML = '⏸ PAUSED <span>(CLICK TO RESUME)</span>';
+            this.pauseBtn.classList.add('is-paused');
+        } else {
+            this.pauseBtn.innerHTML = '▶ ROTATING <span>(CLICK TO PAUSE)</span>';
+            this.pauseBtn.classList.remove('is-paused');
+        }
+    }
+
     updateNavVisibility() {
         const hasMultiple = this.items.length > 1;
         if (this.navPrev) this.navPrev.style.display = hasMultiple ? 'flex' : 'none';
         if (this.navNext) this.navNext.style.display = hasMultiple ? 'flex' : 'none';
+        if (this.pauseBtn) this.pauseBtn.style.display = hasMultiple ? 'flex' : 'none';
     }
 
     /**
@@ -146,10 +184,20 @@ class RoundCarousel {
     }
 
     bindEvents() {
+        // Hover เพื่อหยุดหมุนชั่วคราว
+        this.container.addEventListener('mouseenter', () => {
+            this.isHovered = true;
+        });
+
+        this.container.addEventListener('mouseleave', () => {
+            this.isHovered = false;
+        });
+
         if (!this.options.drag) return;
 
         const onPointerDown = (e) => {
             this.isDragging = true;
+            this.targetRotY = null;
             this.dragStartX = e.clientX;
             this.dragLastX = e.clientX;
             this.dragDistance = 0;
@@ -193,27 +241,51 @@ class RoundCarousel {
             } else if (e.key === 'ArrowLeft') {
                 e.preventDefault();
                 this.step(1);
+            } else if (e.key === ' ' || e.key === 'p') {
+                e.preventDefault();
+                this.togglePause();
             }
         });
     }
 
     /**
-     * หมุนไปยังการ์ดถัดไปหรือก่อนหน้า
+     * หมุนไปยังการ์ดถัดไปหรือก่อนหน้า พร้อมหยุดให้ดู
      */
     step(dir) {
         if (this.items.length <= 1) return;
-        const targetRot = this.rotY + dir * this.angleStep;
-        this.rotY = Math.round(targetRot / this.angleStep) * this.angleStep;
+        const currentTarget = this.targetRotY !== null ? this.targetRotY : this.rotY;
+        this.targetRotY = currentTarget + dir * this.angleStep;
         this.vel = 0;
+        this.togglePause(true); // หยุดหมุนอัตโนมัติเพื่อให้ผู้ใช้ดูการ์ด
     }
 
     /**
-     * หมุนให้การ์ด index นั้นๆ หันมาด้านหน้าตรงๆ
+     * หมุนให้การ์ด index นั้นๆ หันมาด้านหน้าตรงๆ อย่างนุ่มนวล และหยุดหมุนเพื่อดูการ์ด
      */
-    rotateTo(index) {
+    rotateTo(index, pause = true) {
         if (index < 0 || index >= this.items.length) return;
-        this.rotY = -index * this.angleStep;
+        this.activeIndex = index;
+
+        // คำนวณหามุมที่สั้นที่สุดในการหมุนมาด้านหน้า
+        const currentMod = ((this.rotY % 360) + 360) % 360;
+        const targetAngle = -index * this.angleStep;
+        const targetMod = ((targetAngle % 360) + 360) % 360;
+        let diff = targetMod - currentMod;
+        if (diff > 180) diff -= 360;
+        if (diff < -180) diff += 360;
+
+        this.targetRotY = this.rotY + diff;
         this.vel = 0;
+
+        if (pause) {
+            this.togglePause(true); // หยุดหมุนเพื่อให้ดูการ์ด
+        }
+
+        // ไฮไลต์การ์ดที่กำลังดู
+        this.cardElements.forEach((el, i) => {
+            if (i === index) el.classList.add('is-inspecting');
+            else el.classList.remove('is-inspecting');
+        });
     }
 
     createCardFace(item, index) {
@@ -292,12 +364,18 @@ class RoundCarousel {
         wrapper.appendChild(front);
         wrapper.appendChild(back);
 
-        // คลิกที่การ์ดเพื่อหมุนมาข้างหน้า หรือทำแอ็กชัน
+        // คลิกที่การ์ด: หมุนการ์ดมาข้างหน้า + หยุดดูการ์ด
         wrapper.addEventListener('click', (e) => {
             if (this.dragDistance > 6) return; // หากเป็นการลาก จะไม่นับเป็นคลิก
             const currentIdx = this.cardElements.indexOf(wrapper);
             if (currentIdx !== -1) {
-                this.rotateTo(currentIdx);
+                if (this.activeIndex === currentIdx && this.isPaused) {
+                    // ถ้ากำลังดูการ์ดใบนี้อยู่แล้ว และคลิกซ้ำ จะสลับหมุนต่อ/หยุด
+                    this.togglePause();
+                } else {
+                    this.rotateTo(currentIdx, true);
+                }
+
                 if (typeof this.options.onCardClick === 'function') {
                     this.options.onCardClick(this.items[currentIdx], currentIdx, wrapper);
                 }
@@ -342,7 +420,7 @@ class RoundCarousel {
         this.updatePositions();
 
         if (focus) {
-            this.rotateTo(newIndex);
+            this.rotateTo(newIndex, true);
         }
     }
 
@@ -364,7 +442,10 @@ class RoundCarousel {
         this.cardElements = [];
         this.ring.innerHTML = '';
         this.rotY = 0;
+        this.targetRotY = null;
         this.vel = 0;
+        this.isPaused = false;
+        this.updatePauseBtnText();
         this.updateNavVisibility();
     }
 
@@ -381,12 +462,25 @@ class RoundCarousel {
             this.lastTime = now;
             const f = Math.min(dt, 0.1);
 
-            if (!this.isDragging) {
+            if (this.targetRotY !== null) {
+                // เคลื่อนที่แบบนุ่มนวล (Smooth Easing) ไปยังการ์ดเป้าหมายที่เลือก
+                const diff = this.targetRotY - this.rotY;
+                if (Math.abs(diff) < 0.1) {
+                    this.rotY = this.targetRotY;
+                    this.targetRotY = null;
+                } else {
+                    this.rotY += diff * Math.min(1, 9 * f);
+                }
+            } else if (!this.isDragging) {
                 if (Math.abs(this.vel) > 0.01) {
                     this.rotY += this.vel * f;
                     this.vel *= 0.94; // แรงหน่วงความเร็วหลังปล่อยมือ
-                } else if (this.options.autoRotate && this.items.length > 1) {
+                } else if (this.options.autoRotate && this.items.length > 1 && !this.isPaused && !this.isHovered) {
                     this.rotY += degPerSec * f;
+                    // ล้างไฮไลต์เมื่อกำลังหมุนอัตโนมัติ
+                    if (this.cardElements.length > 0) {
+                        this.cardElements.forEach(el => el.classList.remove('is-inspecting'));
+                    }
                 }
             }
 
