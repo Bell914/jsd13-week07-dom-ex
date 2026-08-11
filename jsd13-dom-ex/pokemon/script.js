@@ -3,63 +3,6 @@ const inputPokemon = document.getElementById('input-pokemon');
 const btnFind = document.getElementById('btn-find');
 const btnRandom = document.getElementById('btn-random');
 const btnReset = document.getElementById('btn-reset');
-const introScreen = document.getElementById('intro-screen');
-const spiralContainer = document.getElementById('spiral-container');
-
-// รายการรูปภาพโปเกมอน Official Artwork สำหรับหมุนวนใน Spiral Vortex หน้า Intro
-const POKEMON_INTRO_IMAGES = [
-    { name: "Pikachu", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" },
-    { name: "Charizard", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png" },
-    { name: "Blastoise", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png" },
-    { name: "Venusaur", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png" },
-    { name: "Gengar", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png" },
-    { name: "Mewtwo", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png" },
-    { name: "Mew", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/151.png" },
-    { name: "Eevee", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png" },
-    { name: "Lucario", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/448.png" },
-    { name: "Gyarados", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/130.png" },
-    { name: "Rayquaza", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/384.png" },
-    { name: "Dragonite", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png" },
-    { name: "Snorlax", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png" },
-    { name: "Lugia", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/249.png" },
-    { name: "Zapdos", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/145.png" },
-    { name: "Articuno", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/144.png" },
-    { name: "Moltres", src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/146.png" },
-];
-
-// เริ่มต้นสร้าง Spiral Vortex บนหน้า Intro
-let spiral = null;
-if (typeof attachSpiralImages === 'function' && spiralContainer) {
-    spiral = attachSpiralImages(spiralContainer, {
-        images: POKEMON_INTRO_IMAGES,
-        turns: 3.5,
-        speed: 2.2,
-        spacing: 5,
-        spread: 6,
-        sizeAttenuation: 2,
-        imageSize: 180,
-        fadeIn: 20,
-        fadeOut: 0,
-        cornerRadius: 8,
-    });
-}
-
-// คลิกที่หน้าจอ Intro เพื่อเข้าสู่หน้าหลัก
-if (introScreen) {
-    const enterMainApp = () => {
-        introScreen.classList.add('hide');
-        setTimeout(() => {
-            if (spiral) spiral.pause();
-        }, 700);
-    };
-
-    introScreen.addEventListener('click', enterMainApp);
-    window.addEventListener('keydown', (e) => {
-        if (!introScreen.classList.contains('hide') && (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape')) {
-            enterMainApp();
-        }
-    });
-}
 
 // ผูก Emoji Burst เข้ากับปุ่มทั้ง 3 ปุ่ม (Find Pokemon, Random, Reset)
 if (typeof attachEmojiBurst === 'function') {

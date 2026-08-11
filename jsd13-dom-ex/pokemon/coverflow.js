@@ -1,8 +1,8 @@
-/**
- * Coverflow Gallery (Smooth3DSlideshow) — Vanilla JS
- * Recreated accurately from Originkit Smooth3DSlideshow React component
- */
+// =========================================================
+// Coverflow Gallery (ระบบแสดงการ์ดสไลด์ 3 มิติ)
+// =========================================================
 
+// ค่าเริ่มต้นของการแสดงผล 3D
 const COMPONENT_DEFAULTS = {
     cardWidth: 280,
     cardHeight: 400,
@@ -22,11 +22,13 @@ const COMPONENT_DEFAULTS = {
     titleColor: "#ffffff",
 };
 
+// ค่าคงที่สำหรับคำนวณตำแหน่งและมิติความลึก (3D Perspective)
 const PERSPECTIVE = 1600;
 const SCALE_STEP = 0.16;
 const MAX_VISIBLE = 2;
 const DEPTH = 240;
 
+// แปลงค่า Transition ของการเคลื่อนไหวให้อยู่ในรูป CSS cubic-bezier
 function cssTransition(t) {
     const dur = t && typeof t.duration === "number" ? t.duration : 0.6;
     let ease = "cubic-bezier(0.22, 1, 0.36, 1)";
@@ -77,6 +79,7 @@ class CoverflowGallery {
         }
     }
 
+    // 1. สร้างโครงสร้าง DOM สำหรับ 3D Stage
     initDOM() {
         this.container.classList.add('coverflow-root');
         this.container.style.position = 'relative';
@@ -89,9 +92,8 @@ class CoverflowGallery {
         this.container.style.overflow = 'visible';
         this.container.style.outline = 'none';
         this.container.setAttribute('tabindex', '0');
-        this.container.setAttribute('role', 'group');
-        this.container.setAttribute('aria-roledescription', 'carousel');
 
+        // กล่อง Stage ที่เปิดใช้งาน preserve-3d
         this.stage = document.createElement('div');
         this.stage.className = 'coverflow-stage';
         this.stage.style.position = 'relative';
@@ -105,6 +107,7 @@ class CoverflowGallery {
         this.createNavButtons();
     }
 
+    // 2. สร้างปุ่มลูกศรเลื่อนซ้าย-ขวา
     createNavButtons() {
         this.navPrev = document.createElement('button');
         this.navPrev.className = 'coverflow-nav coverflow-prev';
@@ -132,12 +135,14 @@ class CoverflowGallery {
         this.updateNavVisibility();
     }
 
+    // ซ่อน/แสดงปุ่มลูกศรเมื่อมีการ์ดมากกว่า 1 ใบ
     updateNavVisibility() {
         const hasMultiple = this.slides.length > 1;
         if (this.navPrev) this.navPrev.style.display = hasMultiple ? 'flex' : 'none';
         if (this.navNext) this.navNext.style.display = hasMultiple ? 'flex' : 'none';
     }
 
+    // 3. ผูก Event คีย์บอร์ดและ Touch Swipe บนมือถือ
     bindEvents() {
         this.container.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') {
@@ -164,6 +169,7 @@ class CoverflowGallery {
         }, { passive: true });
     }
 
+    // ล็อคการกดรัวขณะแอนิเมชันกำลังเคลื่อนไหว
     lock() {
         this.isLocked = true;
         const durMs = Math.max(50, this.dur * 1000);
@@ -172,6 +178,7 @@ class CoverflowGallery {
         }, durMs);
     }
 
+    // เลื่อนการ์ดไปข้างหน้าหรือถอยหลัง
     step(dir) {
         const n = this.slides.length;
         if (n <= 1 || this.isLocked) return;
@@ -180,6 +187,7 @@ class CoverflowGallery {
         this.updatePositions();
     }
 
+    // ไปยังการ์ดใบที่ระบุ
     goTo(index) {
         const n = this.slides.length;
         if (n === 0 || this.isLocked) return;
@@ -188,17 +196,18 @@ class CoverflowGallery {
         this.updatePositions();
     }
 
+    // คำนวณความโค้งมุมการ์ด
     getEffectiveRadius() {
         const r = Math.max(0, Math.min(20, this.options.radius));
         const minSide = Math.min(this.options.cardWidth, this.options.cardHeight);
         return (r / 20) * (minSide / 2);
     }
 
+    // 4. สร้าง DOM ของการ์ดแต่ละใบ
     createCardElement(slide, index) {
         const card = document.createElement('div');
         card.className = 'coverflow-card';
         card.setAttribute('data-index', String(index));
-        card.setAttribute('aria-label', slide.title || `Card ${index + 1}`);
 
         const radiusPx = this.getEffectiveRadius();
 
@@ -231,12 +240,11 @@ class CoverflowGallery {
             img.style.width = '100%';
             img.style.height = '100%';
             img.style.objectFit = 'cover';
-            img.style.display = 'block';
             img.style.userSelect = 'none';
             card.appendChild(img);
         }
 
-        // ปุ่มลบการ์ด
+        // ปุ่มลบการ์ด (ปุ่มกากบาท X)
         const deleteBtn = document.createElement('button');
         deleteBtn.className = 'coverflow-card-delete';
         deleteBtn.innerHTML = '✕';
@@ -250,7 +258,7 @@ class CoverflowGallery {
         });
         card.appendChild(deleteBtn);
 
-        // แผ่นฟิล์ม Dim Overlay สำหรับทำให้การ์ดข้างๆ มืดลง
+        // แผ่นฟิล์มลดแสงสำหรับการ์ดด้านข้าง (Dim Overlay)
         const dimOverlay = document.createElement('div');
         dimOverlay.className = 'coverflow-dim-overlay';
         dimOverlay.style.position = 'absolute';
@@ -260,7 +268,7 @@ class CoverflowGallery {
         dimOverlay.style.transition = `opacity ${this.dur}s ${this.ease}`;
         card.appendChild(dimOverlay);
 
-        // คลิกที่การ์ด: ถ้าเป็นการ์ดใบเดิม จะหมุนไปใบถัดไป ((active + 1) % n), ถ้าเป็นการ์ดใบอื่นจะหมุนใบนั้นมาตรงกลาง
+        // เมื่อคลิกที่การ์ด
         card.addEventListener('click', () => {
             if (this.isLocked || this.options.autoplay) return;
             const currentIdx = this.cardElements.indexOf(card);
@@ -269,6 +277,7 @@ class CoverflowGallery {
             const n = this.slides.length;
             this.lock();
             if (currentIdx === this.active) {
+                // คลิกการ์ดตรงกลาง -> หมุนไปใบถัดไป
                 if (typeof this.options.onCardClick === 'function') {
                     this.options.onCardClick(this.slides[currentIdx], currentIdx);
                 } else {
@@ -276,6 +285,7 @@ class CoverflowGallery {
                     this.updatePositions();
                 }
             } else {
+                // คลิกการ์ดข้างๆ -> หมุนการ์ดใบนั้นมาตรงกลาง
                 this.active = currentIdx;
                 this.updatePositions();
             }
@@ -284,6 +294,7 @@ class CoverflowGallery {
         return card;
     }
 
+    // 5. คำนวณตำแหน่งและองศา 3D Transform ของการ์ดทุกใบ
     updatePositions() {
         const n = this.slides.length;
         const dim = 1 - Math.max(0, Math.min(100, this.options.opacity)) / 100;
@@ -328,6 +339,7 @@ class CoverflowGallery {
         this.updateNavVisibility();
     }
 
+    // กำหนดชุดการ์ดใหม่ทั้งหมด
     setSlides(slides) {
         this.slides = [...slides];
         this.stage.innerHTML = '';
@@ -344,6 +356,7 @@ class CoverflowGallery {
         this.restartAutoplay();
     }
 
+    // เพิ่มการ์ดใหม่ 1 ใบ
     addSlide(slide, focus = true) {
         this.slides.push(slide);
         const newIndex = this.slides.length - 1;
@@ -359,6 +372,7 @@ class CoverflowGallery {
         this.restartAutoplay();
     }
 
+    // ลบการ์ดตามลำดับ index
     removeSlide(index) {
         if (index < 0 || index >= this.slides.length) return;
         const removed = this.slides.splice(index, 1)[0];
@@ -378,6 +392,7 @@ class CoverflowGallery {
         this.restartAutoplay();
     }
 
+    // เคลียร์การ์ดทั้งหมด
     clear() {
         this.slides = [];
         this.cardElements = [];
@@ -387,6 +402,7 @@ class CoverflowGallery {
         this.stopAutoplay();
     }
 
+    // ระบบเล่นอัตโนมัติ (Autoplay)
     startAutoplay() {
         if (!this.options.autoplay || this.slides.length < 2) return;
         this.stopAutoplay();
@@ -413,7 +429,7 @@ class CoverflowGallery {
     }
 }
 
-// Global helper function
+// ฟังก์ชันเปิดใช้งาน Coverflow Gallery
 function attachCoverflow(container, options = {}) {
     return new CoverflowGallery(container, options);
 }
