@@ -263,28 +263,25 @@ body {
 }
 
 .pokemon-img-frame {
-    width: 130px;
-    height: 130px;
-    background: radial-gradient(circle, #ffffff 40%, #e2e8f0 100%);
-    border: 2px solid #1a1a2e;
-    border-radius: 12px;
+    width: 140px;
+    height: 140px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 4px 0;
-    box-shadow: inset 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 .pokemon-card-img {
-    width: 110px;
-    height: 110px;
+    width: 130px;
+    height: 130px;
     image-rendering: pixelated;
     object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
     transition: transform 0.2s ease;
 }
 
 .coverflow-card.is-active .pokemon-card-img {
-    transform: scale(1.08);
+    transform: scale(1.1);
 }
 
 .pokemon-types {
