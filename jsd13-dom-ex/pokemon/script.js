@@ -82,20 +82,20 @@ if (typeof attachEmojiBurst === 'function') {
     });
 }
 
-// เริ่มต้นสร้าง 3D Round Carousel Ring บน #pokedex (เริ่มต้นว่างเปล่า)
-let carousel = null;
-if (typeof attachRoundCarousel === 'function') {
-    carousel = attachRoundCarousel(pokedex, {
+// เริ่มต้นสร้าง 3D Coverflow Gallery บน #pokedex (เริ่มต้นว่างเปล่า)
+let coverflow = null;
+if (typeof attachCoverflow === 'function') {
+    coverflow = attachCoverflow(pokedex, {
         cardWidth: 280,
-        cardHeight: 390,
-        spacing: 3.2,
-        speed: 2.2,
-        direction: "right",
-        drag: true,
-        sensitivity: 5,
-        tilt: -8,
-        perspective: 2600,
-        autoRotate: true,
+        cardHeight: 400,
+        radius: 4,
+        tilt: 14,
+        sideTilt: 7,
+        gap: 8,
+        opacity: 85,
+        perspective: 1600,
+        transitionDuration: 0.6,
+        transitionEase: "cubic-bezier(0.22, 1, 0.36, 1)",
     });
 }
 
@@ -155,7 +155,7 @@ function createPokemonCardElement(data) {
     return cardContent;
 }
 
-// ฟังก์ชันกลาง: รับ id หรือชื่อ แล้วไปดึงข้อมูลจาก PokeAPI มาสร้างการ์ดใน Round Carousel Ring
+// ฟังก์ชันกลาง: รับ id หรือชื่อ แล้วไปดึงข้อมูลจาก PokeAPI มาสร้างการ์ดใน Coverflow
 async function showPokemon(query) {
     try {
         const findPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
@@ -173,15 +173,15 @@ async function showPokemon(query) {
         const data = await findPokemon.json();
         const cardElement = createPokemonCardElement(data);
 
-        if (carousel) {
-            // เพิ่มการ์ดเข้าสู่วงแหวน 3D Round Carousel และหมุนมาโฟกัสที่การ์ดใหม่ทันที
-            carousel.addCard({
+        if (coverflow) {
+            // เพิ่มการ์ดเข้าสู่ 3D Coverflow และเลื่อนโฟกัสมาที่การ์ดใหม่ทันที
+            coverflow.addSlide({
                 title: data.name,
                 customElement: cardElement,
                 data: data
             }, true);
         } else {
-            // โหมด fallback กรณีไม่มี round-carousel.js
+            // โหมด fallback กรณีไม่มี coverflow.js
             const div = document.createElement('div');
             div.classList.add('pokemon-card');
             div.append(cardElement);
@@ -214,10 +214,10 @@ btnRandom.addEventListener('click', () => {
     showPokemon(randomId);
 });
 
-// ปุ่ม Reset: ลบการ์ดทั้งหมดออกจากวงแหวน
+// ปุ่ม Reset: ลบการ์ดทั้งหมดออกจากหน้าจอ
 btnReset.addEventListener('click', () => {
-    if (carousel) {
-        carousel.clear();
+    if (coverflow) {
+        coverflow.clear();
     } else {
         pokedex.innerHTML = '';
     }
