@@ -61,10 +61,23 @@ if (introScreen) {
     });
 }
 
-// ผูก Emoji Burst เข้ากับปุ่ม Random ให้เด้ง emoji ทุกครั้งที่กด
+// ผูก Emoji Burst เข้ากับปุ่มทั้ง 3 ปุ่ม (Find Pokemon, Random, Reset)
 if (typeof attachEmojiBurst === 'function') {
+    // ปุ่ม Find Pokemon (โทนแว่นขยาย, แสงประกาย, สายฟ้า)
+    attachEmojiBurst(btnFind, {
+        emojis: "🔍,✨,⭐,⚡,💫,🎯",
+        burstCount: 12,
+    });
+
+    // ปุ่ม Random (โทนเต๋า, ปาร์ตี้, สายฟ้า, ไฟ)
     attachEmojiBurst(btnRandom, {
-        emojis: "⚡,🎉,✨,🔥,⭐",
+        emojis: "🎲,⚡,🎉,✨,🔥,⭐",
+        burstCount: 14,
+    });
+
+    // ปุ่ม Reset (โทนระเบิด, กวาดล้าง, ฝุ่นควัน, น้ำแข็ง)
+    attachEmojiBurst(btnReset, {
+        emojis: "💥,💨,🧹,🗑️,✨,❄️",
         burstCount: 14,
     });
 }
