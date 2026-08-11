@@ -358,6 +358,7 @@ class CoverflowGallery {
                 card.classList.add('is-active');
             } else {
                 card.classList.remove('is-active');
+                card.classList.remove('is-popped');
             }
         });
 

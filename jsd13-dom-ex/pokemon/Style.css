@@ -186,40 +186,64 @@ body {
     background-color: #f5385d;
 }
 
-/* ===== การ์ดโปเกมอนและ 3D Coverflow ===== */
+/* ===== การ์ดโปเกมอนและ 3D Round Carousel Ring ===== */
 #pokedex {
     position: relative;
     width: 100%;
     max-width: 1000px;
-    min-height: 480px;
+    min-height: 520px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 10px;
 }
 
-.coverflow-root {
+.round-carousel-root {
     user-select: none;
 }
 
-.coverflow-card {
-    background: #ffffff;
-    border: 4px solid #1a1a2e !important;
-    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.35) !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 16px;
-    box-sizing: border-box;
+.round-carousel-slot {
     cursor: pointer;
+    transition: filter 0.3s ease;
 }
 
-.coverflow-card.is-active {
-    box-shadow: 0 0 25px rgba(245, 197, 24, 0.6), 8px 8px 0px rgba(0, 0, 0, 0.4) !important;
-    border-color: #1a1a2e !important;
+.round-carousel-front {
+    background: #ffffff !important;
+    border: 4px solid #1a1a2e !important;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35), 4px 4px 0px rgba(0,0,0,0.2) !important;
 }
 
-/* Pokemon Card Content ภายใน Coverflow */
+.round-carousel-back {
+    background: radial-gradient(circle at center, #2c3e50 0%, #111827 100%) !important;
+    border: 4px solid #1a1a2e !important;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ลวดลาย PokeBall ด้านหลังการ์ด */
+.card-back-pokeball {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #f5385d 0%, #f5385d 48%, #1a1a2e 48%, #1a1a2e 52%, #ffffff 52%, #ffffff 100%);
+    border: 4px solid #1a1a2e;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.card-back-pokeball::after {
+    content: "";
+    width: 32px;
+    height: 32px;
+    background: #ffffff;
+    border: 4px solid #1a1a2e;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 3px #e2e8f0;
+}
+
+/* Pokemon Card Content ภายใน Round Carousel */
 .pokemon-card-content {
     width: 100%;
     height: 100%;
@@ -278,10 +302,6 @@ body {
     object-fit: contain;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
     transition: transform 0.2s ease;
-}
-
-.coverflow-card.is-active .pokemon-card-img {
-    transform: scale(1.1);
 }
 
 .pokemon-types {
@@ -354,7 +374,7 @@ body {
 }
 
 /* ปุ่มลบการ์ด */
-.coverflow-card-delete {
+.round-carousel-delete {
     position: absolute;
     top: 6px;
     right: 6px;
@@ -374,28 +394,14 @@ body {
     opacity: 0.85;
     transition: opacity 0.2s ease, transform 0.1s ease;
 }
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    box-shadow: 2px 2px 0px rgba(0,0,0,0.3);
-    opacity: 0;
-    transition: opacity 0.2s ease, transform 0.1s ease;
-}
 
-.coverflow-card:hover .coverflow-card-delete,
-.coverflow-card.is-active .coverflow-card-delete {
-    opacity: 1;
-}
-
-.coverflow-card-delete:hover {
+.round-carousel-delete:hover {
     transform: scale(1.1);
     background: #ff1e48;
 }
 
-/* ปุ่มนำทาง ซ้าย-ขวา */
-.coverflow-nav {
+/* ปุ่มนำทาง หมุนซ้าย-ขวา */
+.carousel-nav-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -416,20 +422,20 @@ body {
     transition: transform 0.1s ease, background-color 0.2s ease;
 }
 
-.coverflow-nav:hover {
+.carousel-nav-btn:hover {
     background-color: #ffd84d;
 }
 
-.coverflow-nav:active {
+.carousel-nav-btn:active {
     transform: translateY(-50%) translate(2px, 2px);
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.35);
 }
 
-.coverflow-prev {
+.carousel-nav-prev {
     left: 20px;
 }
 
-.coverflow-next {
+.carousel-nav-next {
     right: 20px;
 }
 
