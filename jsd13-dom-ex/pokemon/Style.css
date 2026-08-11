@@ -14,6 +14,105 @@ body {
     padding: 40px 20px;
 }
 
+/* ===== หน้าจอ Splash Intro Spiral Vortex ===== */
+.intro-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: radial-gradient(circle at center, #1b2838 0%, #0a0e17 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.7s ease, transform 0.7s ease;
+}
+
+.intro-screen.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.08);
+}
+
+.spiral-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.intro-overlay {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    pointer-events: none;
+    background: rgba(10, 14, 23, 0.78);
+    backdrop-filter: blur(8px);
+    border: 4px solid #f5c518;
+    border-radius: 20px;
+    padding: 32px 40px;
+    box-shadow: 0 0 35px rgba(245, 197, 24, 0.45), 8px 8px 0px rgba(0, 0, 0, 0.6);
+    max-width: 520px;
+    width: 90%;
+    animation: introFloat 3s ease-in-out infinite alternate;
+}
+
+@keyframes introFloat {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-8px); }
+}
+
+.intro-badge {
+    display: inline-block;
+    background: #f5385d;
+    color: white;
+    font-size: 10px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 2px solid #ffffff;
+    margin-bottom: 16px;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+}
+
+.intro-title {
+    color: #f5c518;
+    font-size: 28px;
+    margin: 0 0 12px;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 0px #1a1a2e, 0 0 15px rgba(245, 197, 24, 0.5);
+}
+
+.intro-subtitle {
+    color: #a1e5c1;
+    font-size: 10px;
+    margin: 0 0 24px;
+    line-height: 1.6;
+    letter-spacing: 1px;
+}
+
+.intro-cta {
+    margin-top: 10px;
+}
+
+.intro-press-text {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 11px;
+    background: #3b3ee0;
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
+    animation: pulseCta 1.4s infinite ease-in-out;
+}
+
+@keyframes pulseCta {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.85; box-shadow: 0 0 18px rgba(59, 62, 224, 0.8), 4px 4px 0px rgba(0, 0, 0, 0.4); }
+}
+
 /* ===== กรอบพาเนลค้นหาด้านบน ===== */
 .search-panel {
     background-color: #ffffff;
@@ -87,46 +186,146 @@ body {
     background-color: #f5385d;
 }
 
-/* ===== การ์ดโปเกมอนที่แสดงผล ===== */
+/* ===== การ์ดโปเกมอนและ 3D Coverflow ===== */
 #pokedex {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    min-height: 480px;
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
-    gap: 16px;
-    max-width: 1200px;
+    margin-top: 10px;
 }
 
-.pokemon-card {
-    background-color: white;
-    border: 3px solid #1a1a2e;
-    border-radius: 14px;
+.coverflow-root {
+    user-select: none;
+}
+
+.coverflow-card {
+    background: #ffffff;
+    border: 4px solid #1a1a2e !important;
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.35) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 16px;
-    width: 160px;
-    text-align: center;
+    box-sizing: border-box;
     cursor: pointer;
-    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.25);
 }
 
-.pokemon-card p.pokemon-name {
-    font-size: 11px;
-    text-transform: capitalize;
-    margin: 4px 0 8px;
+.coverflow-card.is-active {
+    box-shadow: 0 0 25px rgba(245, 197, 24, 0.6), 8px 8px 0px rgba(0, 0, 0, 0.4) !important;
+    border-color: #1a1a2e !important;
+}
+
+/* Pokemon Card Content ภายใน Coverflow */
+.pokemon-card-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.pokemon-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px dashed #1a1a2e;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+
+.pokemon-card-name {
+    font-size: 13px;
     color: #1a1a2e;
+    text-transform: capitalize;
+    margin: 0;
+    font-weight: bold;
+    text-align: left;
 }
 
-.pokemon-card img {
-    width: 90px;
-    height: 90px;
-    image-rendering: pixelated;
+.pokemon-card-id {
+    font-size: 10px;
+    color: #888;
+    margin: 0;
 }
+
+.pokemon-img-frame {
+    width: 130px;
+    height: 130px;
+    background: radial-gradient(circle, #ffffff 40%, #e2e8f0 100%);
+    border: 2px solid #1a1a2e;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 6px 0;
+    box-shadow: inset 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.pokemon-card-img {
+    width: 110px;
+    height: 110px;
+    image-rendering: pixelated;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+.coverflow-card.is-active .pokemon-card-img {
+    transform: scale(1.08);
+}
+
+.pokemon-types {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.pokemon-type-badge {
+    font-size: 8px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    border: 1px solid #1a1a2e;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.type-normal { background-color: #A8A878; }
+.type-fire { background-color: #F08030; }
+.type-water { background-color: #6890F0; }
+.type-electric { background-color: #F8D030; color: #1a1a2e !important; }
+.type-grass { background-color: #78C850; }
+.type-ice { background-color: #98D8D8; color: #1a1a2e !important; }
+.type-fighting { background-color: #C03028; }
+.type-poison { background-color: #A040A0; }
+.type-ground { background-color: #E0C068; color: #1a1a2e !important; }
+.type-flying { background-color: #A890F0; }
+.type-psychic { background-color: #F85888; }
+.type-bug { background-color: #A8B820; }
+.type-rock { background-color: #B8A038; }
+.type-ghost { background-color: #705898; }
+.type-dragon { background-color: #7038F8; }
+.type-steel { background-color: #B8B8D0; color: #1a1a2e !important; }
+.type-fairy { background-color: #EE99AC; }
 
 .pokemon-stats {
-    margin-top: 10px;
+    width: 100%;
+    margin-top: 4px;
     text-align: left;
     font-size: 8px;
-    background-color: #f2f2f2;
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
     border-radius: 8px;
-    padding: 8px;
+    padding: 6px 10px;
+    box-sizing: border-box;
 }
 
 .pokemon-stats p {
@@ -135,6 +334,90 @@ body {
     display: flex;
     justify-content: space-between;
     color: #1a1a2e;
+}
+
+/* ปุ่มลบการ์ด */
+.coverflow-card-delete {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    background: #f5385d;
+    color: white;
+    border: 2px solid #1a1a2e;
+    border-radius: 6px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.coverflow-card:hover .coverflow-card-delete,
+.coverflow-card.is-active .coverflow-card-delete {
+    opacity: 1;
+}
+
+.coverflow-card-delete:hover {
+    transform: scale(1.1);
+    background: #ff1e48;
+}
+
+/* ปุ่มนำทาง ซ้าย-ขวา */
+.coverflow-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background-color: #f5c518;
+    color: #1a1a2e;
+    border: 3px solid #1a1a2e;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.35);
+    z-index: 20;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+.coverflow-nav:hover {
+    background-color: #ffd84d;
+}
+
+.coverflow-nav:active {
+    transform: translateY(-50%) translate(2px, 2px);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.35);
+}
+
+.coverflow-prev {
+    left: 20px;
+}
+
+.coverflow-next {
+    right: 20px;
+}
+
+.coverflow-empty-hint {
+    color: #2b3a4a;
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.8;
+    background: rgba(255, 255, 255, 0.85);
+    border: 3px dashed #1a1a2e;
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 460px;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.15);
 }
 
 .not-found {
