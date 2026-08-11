@@ -229,7 +229,7 @@ body {
     justify-content: space-between;
     text-align: center;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .pokemon-header {
@@ -238,22 +238,27 @@ body {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px dashed #1a1a2e;
-    padding-bottom: 8px;
-    margin-bottom: 8px;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    padding-right: 26px; /* ป้องกันปุ่มลบ X บังเลข ID */
+    box-sizing: border-box;
 }
 
 .pokemon-card-name {
     font-size: 13px;
-    color: #1a1a2e;
+    color: #0f172a;
     text-transform: capitalize;
     margin: 0;
     font-weight: bold;
     text-align: left;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
 }
 
 .pokemon-card-id {
-    font-size: 10px;
-    color: #888;
+    font-size: 11px;
+    color: #334155;
+    font-weight: bold;
     margin: 0;
 }
 
@@ -266,7 +271,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 6px 0;
+    margin: 4px 0;
     box-shadow: inset 2px 2px 4px rgba(0,0,0,0.1);
 }
 
@@ -285,69 +290,93 @@ body {
 .pokemon-types {
     display: flex;
     gap: 6px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .pokemon-type-badge {
-    font-size: 8px;
-    padding: 3px 8px;
+    font-size: 9px;
+    padding: 4px 8px;
     border-radius: 6px;
-    border: 1px solid #1a1a2e;
-    color: #fff;
+    border: 1.5px solid #1a1a2e;
+    color: #ffffff;
     text-transform: uppercase;
     font-weight: bold;
+    letter-spacing: 0.5px;
+    box-shadow: 1px 1px 0px rgba(0,0,0,0.2);
 }
 
-.type-normal { background-color: #A8A878; }
-.type-fire { background-color: #F08030; }
-.type-water { background-color: #6890F0; }
+.type-normal { background-color: #A8A878; color: #ffffff; }
+.type-fire { background-color: #F08030; color: #ffffff; }
+.type-water { background-color: #6890F0; color: #ffffff; }
 .type-electric { background-color: #F8D030; color: #1a1a2e !important; }
-.type-grass { background-color: #78C850; }
+.type-grass { background-color: #78C850; color: #ffffff; }
 .type-ice { background-color: #98D8D8; color: #1a1a2e !important; }
-.type-fighting { background-color: #C03028; }
-.type-poison { background-color: #A040A0; }
+.type-fighting { background-color: #C03028; color: #ffffff; }
+.type-poison { background-color: #A040A0; color: #ffffff; }
 .type-ground { background-color: #E0C068; color: #1a1a2e !important; }
-.type-flying { background-color: #A890F0; }
-.type-psychic { background-color: #F85888; }
-.type-bug { background-color: #A8B820; }
-.type-rock { background-color: #B8A038; }
-.type-ghost { background-color: #705898; }
-.type-dragon { background-color: #7038F8; }
+.type-flying { background-color: #A890F0; color: #ffffff; }
+.type-psychic { background-color: #F85888; color: #ffffff; }
+.type-bug { background-color: #A8B820; color: #ffffff; }
+.type-rock { background-color: #B8A038; color: #ffffff; }
+.type-ghost { background-color: #705898; color: #ffffff; }
+.type-dragon { background-color: #7038F8; color: #ffffff; }
 .type-steel { background-color: #B8B8D0; color: #1a1a2e !important; }
-.type-fairy { background-color: #EE99AC; }
+.type-fairy { background-color: #EE99AC; color: #1a1a2e !important; }
+.type-dark { background-color: #705848; color: #ffffff !important; }
+.type-stellar { background-color: #40B5A5; color: #ffffff !important; }
+.type-unknown { background-color: #68A090; color: #ffffff !important; }
 
 .pokemon-stats {
     width: 100%;
     margin-top: 4px;
     text-align: left;
-    font-size: 8px;
-    background-color: #f1f5f9;
-    border: 1px solid #cbd5e1;
+    font-size: 9px;
+    background-color: #f8fafc;
+    border: 2px solid #1a1a2e;
     border-radius: 8px;
-    padding: 6px 10px;
+    padding: 8px 10px;
     box-sizing: border-box;
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.05);
 }
 
 .pokemon-stats p {
-    margin: 3px 0;
+    margin: 4px 0;
     text-transform: capitalize;
     display: flex;
     justify-content: space-between;
-    color: #1a1a2e;
+    color: #0f172a;
+    font-weight: bold;
+    font-size: 8.5px;
+    letter-spacing: 0.3px;
+}
+
+.pokemon-stats strong {
+    color: #1e3a8a;
+    font-weight: bold;
+    font-size: 9px;
 }
 
 /* ปุ่มลบการ์ด */
 .coverflow-card-delete {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 24px;
-    height: 24px;
+    top: 6px;
+    right: 6px;
+    width: 22px;
+    height: 22px;
     background: #f5385d;
     color: white;
     border: 2px solid #1a1a2e;
     border-radius: 6px;
-    font-size: 11px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+    opacity: 0.85;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+}
     display: flex;
     align-items: center;
     justify-content: center;

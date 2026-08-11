@@ -92,7 +92,7 @@ if (typeof attachCoverflow === 'function') {
         tilt: 14,
         sideTilt: 7,
         gap: 8,
-        opacity: 60,
+        opacity: 85,
         perspective: 1600,
         transitionDuration: 0.6,
         transitionEase: "cubic-bezier(0.22, 1, 0.36, 1)",

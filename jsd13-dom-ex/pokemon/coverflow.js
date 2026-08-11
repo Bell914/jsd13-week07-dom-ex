@@ -322,7 +322,7 @@ class CoverflowGallery {
      */
     updatePositions() {
         const n = this.slides.length;
-        const dimVal = 1 - Math.max(0, Math.min(100, this.options.opacity)) / 100;
+        const dimVal = (1 - Math.max(0, Math.min(100, this.options.opacity)) / 100) * 0.35;
         const shouldLoop = this.options.loop && n > 2;
 
         this.cardElements.forEach((card, i) => {
