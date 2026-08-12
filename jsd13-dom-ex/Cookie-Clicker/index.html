@@ -1,19 +1,78 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie Clicker Game 🍪</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Clicker Game 🍪</title>
+  <!-- ลิงก์เชื่อมโยงกับไฟล์ CSS เพื่อตกแต่งหน้าตา -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header">
-    <h1>🍪 Cookie Clicker</h1>
-    <div class="stats">
-      <p>จำนวนคุกกี้: <span id="score">0</span> ชิ้น</p>
-      <p class="cps-text">ผลิตอัตโนมัติ: <span id="cps">0</span> ชิ้น/วินาที</p>
-    </div>
-  </header>
 
+  <!-- // <main> ครอบเนื้อหาหลักของเกมทั้งหมดตามหลัก Semantic HTML -->
+  <main class="game-container">
+    
+  
+    <!-- // 1. ส่วนหัวและสถิติคะแนน (Header & Stats)    -->
+    <header class="header">
+      <h1>🍪 Cookie Clicker</h1>
+      <div class="stats">
+        <!-- // ใช้แท็ก <output> สำหรับแสดงผลลัพธ์ตัวเลขที่เกิดจากการคำนวณ -->
+        <p>จำนวนคุกกี้: <output id="score">0</output> ชิ้น</p>
+        <p class="cps-text">ผลิตอัตโนมัติ: <output id="cps">0</output> ชิ้น/วินาที</p>
+      </div>
+    </header>
+
+   
+    <!-- // 2. ส่วนคุกกี้สำหรับคลิก (Cookie Area)     -->
+    <section class="cookie-section" aria-label="พื้นที่คลิกคุกกี้">
+      <button id="cookie-btn" class="cookie-btn" aria-label="คลิกเพื่อเก็บคุกกี้">
+        🍪
+      </button>
+      <p class="click-info">คลิกที่คุกกี้เพื่อเริ่มอบ!</p>
+    </section>
+
+    
+    <!-- // 3. ส่วนร้านค้าอัปเกรด (Shop Aside)        -->
+   
+    <aside class="shop-section" aria-label="ร้านค้าอัปเกรด">
+      <h2>🛒 ร้านค้าอัปเกรด</h2>
+      
+      <!-- // ใช้แท็ก <ul> และ <li> สำหรับรายการสินค้าอัปเกรด -->
+      <ul class="upgrade-list">
+        
+        <!-- // รายการอัปเกรด 1: พลังการคลิก -->
+        <li>
+          <button id="upgrade-click" class="upgrade-btn" disabled>
+            <div class="upgrade-info">
+              <strong>👆 นิ้วทองคำ (Click Power)</strong>
+              <span>+1 คุกกี้ต่อการคลิก</span>
+            </div>
+            <div class="upgrade-cost">
+              ราคา: <output id="cost-click">10</output> 🍪
+            </div>
+          </button>
+        </li>
+
+        <!-- // รายการอัปเกรด 2: คุณยายช่วยอบ Auto Clicker -->
+        <li>
+          <button id="upgrade-auto" class="upgrade-btn" disabled>
+            <div class="upgrade-info">
+              <strong>👵 คุณยายช่วยอบ (Auto Clicker)</strong>
+              <span>+1 คุกกี้ทุกๆ 1 วินาที</span>
+            </div>
+            <div class="upgrade-cost">
+              ราคา: <output id="cost-auto">50</output> 🍪
+            </div>
+          </button>
+        </li>
+
+      </ul>
+    </aside>
+
+  </main>
+
+   <!-- ลิงก์เชื่อมโยงกับไฟล์ JavaScript  -->
+  <script src="script.js"></script>
 </body>
 </html>
