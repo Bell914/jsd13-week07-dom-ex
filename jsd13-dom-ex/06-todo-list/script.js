@@ -5,6 +5,9 @@
 //   - the form (#todo-form)
 //   - the input (#todo-input)
 //   - the list (#todo-list)
+const todoForm = document.getElementById("todo-form");
+const todoInput = document.getElementById("todo-input");
+const todoList = document.getElementById("todo-list");
 
 
 // TODO 2: Listen for the form's "submit" event. Inside the handler:
