@@ -11,6 +11,9 @@ const itemCount = document.getElementById("item-count");
 
 // TODO 2: Write a function updateCount() that sets item-count's textContent
 // to the number of <li> elements currently in the list (items.children.length).
+function updateCount() {
+  itemCount.textContent = items.children.length;
+}
 
 
 // TODO 3: Add a "click" listener on #add-item-btn. Inside it:
@@ -21,3 +24,5 @@ const itemCount = document.getElementById("item-count");
 //   - add the <li> to the TOP of the list using items.prepend(li)
 //   - clear the input
 //   - call updateCount()
+
+
