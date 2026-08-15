@@ -24,5 +24,19 @@ function updateCount() {
 //   - add the <li> to the TOP of the list using items.prepend(li)
 //   - clear the input
 //   - call updateCount()
+addItemBtn.addEventListener("click", () => {
+    const value = itemInput.value.trim();
+    if (value === "") return;
 
+    const li = document.createElement("li");
+    li.textContent = value;
 
+    li.addEventListener("click", () => {
+        li.remove();
+        updateCount();
+    });
+
+    items.prepend(li);
+    itemInput.value = "";
+    updateCount();
+});
