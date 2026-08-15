@@ -15,6 +15,16 @@ const todoList = document.getElementById("todo-list");
 //   - read and trim the input's value
 //   - if it's empty, do nothing (return)
 //   - otherwise, create a new to-do item (see TODO 3) and clear the input
+todoForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const text = todoInput.value.trim();
+    if (text === "") return;
+
+    addTodo(text);
+    todoInput.value = "";
+});
+
 
 
 // TODO 3: Write a function addTodo(text) that:
