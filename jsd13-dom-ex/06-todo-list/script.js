@@ -34,6 +34,21 @@ todoForm.addEventListener("submit", (event) => {
 //   - appends the <li> to the list
 //
 // Hint: use document.createElement, textContent, and append/appendChild.
+function addTodo(text) {
+    const li = document.createElement("li");
+
+    const span = document.createElement("span");
+    span.classList.add("todo-text");
+    span.textContent = text;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("delete-btn");
+    deleteBtn.textContent = "x";
+
+    li.appendChild(span);
+    li.appendChild(deleteBtn);
+    todoList.appendChild(li);
+}
 
 
 // TODO 4: When the delete button inside an <li> is clicked, remove that <li>
@@ -43,3 +58,4 @@ todoForm.addEventListener("submit", (event) => {
 // TODO 5: When the todo-text span inside an <li> is clicked, toggle the
 // "completed" class on the <li>. (Attach this listener when you create the
 // span in TODO 3.)
+
