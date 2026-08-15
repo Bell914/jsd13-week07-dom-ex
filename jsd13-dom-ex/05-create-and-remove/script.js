@@ -3,6 +3,10 @@
 
 // TODO 1: Select #item-input, #add-item-btn, #items (the <ul>), and
 // #item-count (the <span>).
+const itemInput = document.getElementById("item-input");
+const addItemBtn = document.getElementById("add-item-btn");
+const items = document.getElementById("items");
+const itemCount = document.getElementById("item-count");
 
 
 // TODO 2: Write a function updateCount() that sets item-count's textContent
