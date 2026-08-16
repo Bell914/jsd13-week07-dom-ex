@@ -14,212 +14,222 @@
 
 <body>
 
-  <div class="game-wrapper-2col">
-    <!-- Main Cookie Clicker Game -->
-    <main class="game-container">
+  <!-- Main Unified 8-Bit Game Container -->
+  <main class="game-container">
 
-      <header class="header">
-        <h1>🍪 Cookie Clicker</h1>
+    <header class="header">
+      <h1>🍪 Cookie Clicker</h1>
+    </header>
+
+    <div class="game-layout-grid">
+      <!-- Left Column: Player, Cookie & Controls -->
+      <div class="game-col-left">
+        <!-- Score & CPS Summary -->
         <div class="stats">
           <p>จำนวนคุกกี้: <output id="score">0</output> ชิ้น</p>
           <p class="cps-text">ผลิตอัตโนมัติ: <output id="cps">0</output> ชิ้น/วินาที</p>
         </div>
 
-      <!-- 8-Bit Player Profile Card Component -->
-      <section class="player-profile-card-8bit" aria-label="การ์ดโปรไฟล์ผู้เล่น 8-Bit">
-        <div class="player-card-header">
-          <div class="player-avatar-frame">
-            <span class="avatar-emoji">👨‍🍳</span>
-          </div>
-          <div class="player-info-meta">
-            <div class="player-name-badge-row">
-              <h2 class="player-name-8bit">CookieDev</h2>
-              <span class="player-lvl-tag">LV.<output id="level-num">1</output></span>
+        <!-- 8-Bit Player Profile Card Component -->
+        <section class="player-profile-card-8bit" aria-label="การ์ดโปรไฟล์ผู้เล่น 8-Bit">
+          <div class="player-card-header">
+            <div class="player-avatar-frame">
+              <span class="avatar-emoji">👨‍🍳</span>
             </div>
-            <p class="player-class-title">⚔️ Master Bakery Warrior</p>
-          </div>
-        </div>
-
-        <div class="player-stat-bars">
-          <!-- Health Bar -->
-          <div class="stat-row-8bit">
-            <div class="stat-meta">
-              <span class="stat-label hp-text">HP</span>
-              <span class="stat-value"><output id="hp-val">100</output>/<output id="hp-max">100</output></span>
-            </div>
-            <div class="bar-frame-8bit">
-              <div id="hp-bar-fill" class="bar-fill-8bit hp-fill" style="width: 100%;"></div>
+            <div class="player-info-meta">
+              <div class="player-name-badge-row">
+                <h2 class="player-name-8bit">CookieDev</h2>
+                <span class="player-lvl-tag">LV.<output id="level-num">1</output></span>
+              </div>
+              <p class="player-class-title">⚔️ Master Bakery Warrior</p>
             </div>
           </div>
 
-          <!-- Mana Bar -->
-          <div class="stat-row-8bit">
-            <div class="stat-meta">
-              <span class="stat-label mana-text">MANA</span>
-              <span class="stat-value"><output id="mana-val">50</output>/<output id="mana-max">50</output></span>
+          <div class="player-stat-bars">
+            <!-- Health Bar -->
+            <div class="stat-row-8bit">
+              <div class="stat-meta">
+                <span class="stat-label hp-text">HP</span>
+                <span class="stat-value"><output id="hp-val">100</output>/<output id="hp-max">100</output></span>
+              </div>
+              <div class="bar-frame-8bit">
+                <div id="hp-bar-fill" class="bar-fill-8bit hp-fill" style="width: 100%;"></div>
+              </div>
             </div>
-            <div class="bar-frame-8bit">
-              <div id="mana-bar-fill" class="bar-fill-8bit mana-fill" style="width: 100%;"></div>
+
+            <!-- Mana Bar -->
+            <div class="stat-row-8bit">
+              <div class="stat-meta">
+                <span class="stat-label mana-text">MANA</span>
+                <span class="stat-value"><output id="mana-val">50</output>/<output id="mana-max">50</output></span>
+              </div>
+              <div class="bar-frame-8bit">
+                <div id="mana-bar-fill" class="bar-fill-8bit mana-fill" style="width: 100%;"></div>
+              </div>
+            </div>
+
+            <!-- Experience Bar -->
+            <div class="stat-row-8bit">
+              <div class="stat-meta">
+                <span class="stat-label exp-text">EXP</span>
+                <span class="stat-value"><output id="xp-current">0</output>/<output id="xp-max">100</output> (<output
+                    id="xp-percent">0%</output>)</span>
+              </div>
+              <div class="bar-frame-8bit">
+                <div id="xp-bar-fill" class="bar-fill-8bit exp-fill" style="width: 0%;"></div>
+                <div id="level-up-banner" class="level-up-flash-8bit hidden">⭐ LEVEL UP! ⭐</div>
+              </div>
             </div>
           </div>
+        </section>
 
-          <!-- Experience Bar -->
-          <div class="stat-row-8bit">
-            <div class="stat-meta">
-              <span class="stat-label exp-text">EXP</span>
-              <span class="stat-value"><output id="xp-current">0</output>/<output id="xp-max">100</output> (<output
-                  id="xp-percent">0%</output>)</span>
-            </div>
-            <div class="bar-frame-8bit">
-              <div id="xp-bar-fill" class="bar-fill-8bit exp-fill" style="width: 0%;"></div>
-              <div id="level-up-banner" class="level-up-flash-8bit hidden">⭐ LEVEL UP! ⭐</div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </header>
-
-    <section class="cookie-section" aria-label="พื้นที่คลิกคุกกี้">
-      <button id="cookie-btn" class="cookie-btn" aria-label="คลิกเพื่อเก็บคุกกี้">
-        🍪
-      </button>
-      <p class="click-info">คลิกที่คุกกี้เพื่อเริ่มอบ!</p>
-    </section>
-
-    <aside class="shop-section" aria-label="ร้านค้าอัปเกรด">
-      <h2>🛒 ร้านค้าอัปเกรด</h2>
-
-      <ul class="upgrade-list">
-        <li>
-          <button id="upgrade-click" class="upgrade-btn" disabled>
-            <div class="upgrade-info">
-              <strong>👆 นิ้วทองคำ</strong>
-              <span>+1 คุกกี้ต่อการคลิก</span>
-            </div>
-            <div class="upgrade-cost">
-              ราคา: <output id="cost-click">10</output> 🍪
-            </div>
+        <!-- Big Cookie Clicking Area -->
+        <section class="cookie-section" aria-label="พื้นที่คลิกคุกกี้">
+          <button id="cookie-btn" class="cookie-btn" aria-label="คลิกเพื่อเก็บคุกกี้">
+            🍪
           </button>
-        </li>
+          <p class="click-info">คลิกที่คุกกี้เพื่อเริ่มอบ!</p>
+        </section>
 
-        <li>
-          <button id="upgrade-auto" class="upgrade-btn" disabled>
-            <div class="upgrade-info">
-              <strong>👵 คุณยายช่วยอบ</strong>
-              <span>+1 คุกกี้ทุกๆ 1 วินาที</span>
+        <!-- 8-Bit Button Component Section -->
+        <section class="buttons-section-8bit" aria-label="ส่วนประกอบปุ่ม 8-Bit">
+          <h2>🕹️ 8-BIT BUTTONS</h2>
+          <div class="button-8bit-group">
+            <button id="btn-retro-boost" class="btn-8bit">
+              ⚡ BOOST 2X
+            </button>
+            <button id="btn-reset-game" class="btn-8bit btn-danger font-normal">
+              🔄 Reset Game
+            </button>
+          </div>
+        </section>
+      </div>
+      <!-- End of game-col-left -->
+
+      <!-- Right Column: Chef Kitchen, Shop & Stats Table -->
+      <div class="game-col-right chef-station-8bit" aria-label="ห้องครัวเชฟทำอาหาร 8-Bit">
+        <div class="chef-station-header">
+          <h2>👨‍🍳 CHEF'S KITCHEN</h2>
+          <span class="chef-live-badge">BAKING LIVE</span>
+        </div>
+
+        <!-- Chef Animated Stage -->
+        <div class="chef-stage">
+          <!-- Floating Speech Bubble -->
+          <div class="chef-speech-bubble" id="chef-speech">
+            "ยินดีต้อนรับสู่ครัว! อบคุกกี้กันเลย 🍪🔥"
+          </div>
+
+          <!-- Animated Pixel Chef Character -->
+          <div class="chef-character-box" id="chef-box">
+            <div class="chef-body">
+              <span class="chef-icon">👨‍🍳</span>
+              <span class="chef-action-tool" id="chef-tool">🥣</span>
             </div>
-            <div class="upgrade-cost">
-              ราคา: <output id="cost-auto">50</output> 🍪
+            <p class="chef-name-tag">Head Chef Cookie</p>
+          </div>
+
+          <!-- 8-Bit Pixel Oven with Fire & Cookies -->
+          <div class="pixel-oven-station">
+            <div class="oven-roof">♨️ RETRO OVEN ♨️</div>
+            <div class="oven-chamber">
+              <span class="oven-flame">🔥</span>
+              <span class="oven-baking-cookie" id="oven-cookie">🍪</span>
+              <span class="oven-flame flame-2">🔥</span>
             </div>
-          </button>
-        </li>
-      </ul>
-    </aside>
-
-    <!-- 8-Bit Retro Stats Table Component -->
-    <section class="table-section-8bit" aria-label="ตารางสถิติ 8-Bit">
-      <h2>📜 8-BIT STATS TABLE</h2>
-      <div class="table-8bit-wrapper">
-        <table class="table-8bit">
-          <caption class="caption-8bit">สรุปข้อมูลการเล่นล่าสุด (Live Stats)</caption>
-          <thead>
-            <tr>
-              <th>รายการ</th>
-              <th>สถานะ</th>
-              <th class="text-right">จำนวน</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="font-pixel">🍪 อบคุกกี้ทั้งหมด</td>
-              <td><span class="badge-8bit green">ACTIVE</span></td>
-              <td class="text-right" id="table-total-cookies">0</td>
-            </tr>
-            <tr>
-              <td class="font-pixel">👆 พลังการคลิก</td>
-              <td><span class="badge-8bit blue">LVL UP</span></td>
-              <td class="text-right" id="table-click-power">1</td>
-            </tr>
-            <tr>
-              <td class="font-pixel">👵 ผลิตอัตโนมัติ</td>
-              <td><span class="badge-8bit yellow">AUTO</span></td>
-              <td class="text-right" id="table-cps">0/s</td>
-            </tr>
-            <tr>
-              <td class="font-pixel">🎯 จำนวนคลิกทั้งหมด</td>
-              <td><span class="badge-8bit purple">CLICKS</span></td>
-              <td class="text-right" id="table-total-clicks">0</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- 8-Bit Button Component Section -->
-    <section class="buttons-section-8bit" aria-label="ส่วนประกอบปุ่ม 8-Bit">
-      <h2>🕹️ 8-BIT BUTTONS</h2>
-      <div class="button-8bit-group">
-        <button id="btn-retro-boost" class="btn-8bit">
-          ⚡ BOOST 2X
-        </button>
-        <button id="btn-reset-game" class="btn-8bit btn-danger font-normal">
-          🔄 Reset Game
-        </button>
-      </div>
-    </section>
-
-    </main>
-
-    <!-- 8-Bit Animated Chef's Bakery Kitchen Station -->
-    <aside class="chef-station-8bit" aria-label="ห้องครัวเชฟทำอาหาร 8-Bit">
-      <div class="chef-station-header">
-        <h2>👨‍🍳 CHEF'S KITCHEN</h2>
-        <span class="chef-live-badge">BAKING LIVE</span>
-      </div>
-
-      <!-- Chef Animated Stage -->
-      <div class="chef-stage">
-        <!-- Floating Speech Bubble -->
-        <div class="chef-speech-bubble" id="chef-speech">
-          "ยินดีต้อนรับสู่ครัว! อบคุกกี้กันเลย 🍪🔥"
+            <div class="oven-meter">
+              <div class="oven-heat-fill" id="oven-heat-fill"></div>
+            </div>
+            <div class="oven-status-text" id="oven-status">อุณหภูมิ: 180°C กำลังอบหอมกรุ่น</div>
+          </div>
         </div>
 
-        <!-- Animated Pixel Chef Character -->
-        <div class="chef-character-box" id="chef-box">
-          <div class="chef-body">
-            <span class="chef-icon">👨‍🍳</span>
-            <span class="chef-action-tool" id="chef-tool">🥣</span>
-          </div>
-          <p class="chef-name-tag">Head Chef Cookie</p>
-        </div>
+        <!-- Shop Upgrades Section -->
+        <section class="shop-section" aria-label="ร้านค้าอัปเกรด">
+          <h2>🛒 ร้านค้าอัปเกรด</h2>
 
-        <!-- 8-Bit Pixel Oven with Fire & Cookies -->
-        <div class="pixel-oven-station">
-          <div class="oven-roof">♨️ RETRO OVEN ♨️</div>
-          <div class="oven-chamber">
-            <span class="oven-flame">🔥</span>
-            <span class="oven-baking-cookie" id="oven-cookie">🍪</span>
-            <span class="oven-flame flame-2">🔥</span>
+          <ul class="upgrade-list">
+            <li>
+              <button id="upgrade-click" class="upgrade-btn" disabled>
+                <div class="upgrade-info">
+                  <strong>👆 นิ้วทองคำ</strong>
+                  <span>+1 คุกกี้ต่อการคลิก</span>
+                </div>
+                <div class="upgrade-cost">
+                  ราคา: <output id="cost-click">10</output> 🍪
+                </div>
+              </button>
+            </li>
+
+            <li>
+              <button id="upgrade-auto" class="upgrade-btn" disabled>
+                <div class="upgrade-info">
+                  <strong>👵 คุณยายช่วยอบ</strong>
+                  <span>+1 คุกกี้ทุกๆ 1 วินาที</span>
+                </div>
+                <div class="upgrade-cost">
+                  ราคา: <output id="cost-auto">50</output> 🍪
+                </div>
+              </button>
+            </li>
+          </ul>
+        </section>
+
+        <!-- 8-Bit Retro Stats Table Component -->
+        <section class="table-section-8bit" aria-label="ตารางสถิติ 8-Bit">
+          <h2>📜 8-BIT STATS TABLE</h2>
+          <div class="table-8bit-wrapper">
+            <table class="table-8bit">
+              <caption class="caption-8bit">สรุปข้อมูลการเล่นล่าสุด (Live Stats)</caption>
+              <thead>
+                <tr>
+                  <th>รายการ</th>
+                  <th>สถานะ</th>
+                  <th class="text-right">จำนวน</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-pixel">🍪 อบคุกกี้ทั้งหมด</td>
+                  <td><span class="badge-8bit green">ACTIVE</span></td>
+                  <td class="text-right" id="table-total-cookies">0</td>
+                </tr>
+                <tr>
+                  <td class="font-pixel">👆 พลังการคลิก</td>
+                  <td><span class="badge-8bit blue">LVL UP</span></td>
+                  <td class="text-right" id="table-click-power">1</td>
+                </tr>
+                <tr>
+                  <td class="font-pixel">👵 ผลิตอัตโนมัติ</td>
+                  <td><span class="badge-8bit yellow">AUTO</span></td>
+                  <td class="text-right" id="table-cps">0/s</td>
+                </tr>
+                <tr>
+                  <td class="font-pixel">🎯 จำนวนคลิกทั้งหมด</td>
+                  <td><span class="badge-8bit purple">CLICKS</span></td>
+                  <td class="text-right" id="table-total-clicks">0</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div class="oven-meter">
-            <div class="oven-heat-fill" id="oven-heat-fill"></div>
-          </div>
-          <div class="oven-status-text" id="oven-status">อุณหภูมิ: 180°C กำลังอบหอมกรุ่น</div>
+        </section>
+
+        <!-- Chef Recipe Book & Tips -->
+        <div class="chef-secret-recipes">
+          <h3>📜 เคล็ดลับความอร่อย</h3>
+          <ul class="recipe-tip-list">
+            <li>✨ <strong>แป้งสูตรพิเศษ</strong>: ยิ่งกดคลิก ยิ่งได้ XP เพิ่ม</li>
+            <li>👵 <strong>สูตรคุณยาย</strong>: ช่วยผลิตคุกกี้อัตโนมัติ 24 ชม.</li>
+            <li>⚡ <strong>Boost Power</strong>: เร่งเตาอบคูณ 2 เท่า!</li>
+          </ul>
         </div>
       </div>
+      <!-- End of game-col-right -->
+    </div>
+    <!-- End of game-layout-grid -->
 
-      <!-- Chef Recipe Book & Tips -->
-      <div class="chef-secret-recipes">
-        <h3>📜 เคล็ดลับความอร่อย</h3>
-        <ul class="recipe-tip-list">
-          <li>✨ <strong>แป้งสูตรพิเศษ</strong>: ยิ่งกดคลิก ยิ่งได้ XP เพิ่ม</li>
-          <li>👵 <strong>สูตรคุณยาย</strong>: ช่วยผลิตคุกกี้อัตโนมัติ 24 ชม.</li>
-          <li>⚡ <strong>Boost Power</strong>: เร่งเตาอบคูณ 2 เท่า!</li>
-        </ul>
-      </div>
-    </aside>
-
-  </div>
+  </main>
+  <!-- End of game-container -->
 
   <script src="script.js"></script>
 </body>
