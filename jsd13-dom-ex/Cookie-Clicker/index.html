@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cookie Clicker Game 🍪</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Prompt:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <main class="game-container">
-    
+
     <header class="header">
       <h1>🍪 Cookie Clicker</h1>
       <div class="stats">
@@ -62,7 +65,8 @@
           <div class="stat-row-8bit">
             <div class="stat-meta">
               <span class="stat-label exp-text">EXP</span>
-              <span class="stat-value"><output id="xp-current">0</output>/<output id="xp-max">100</output> (<output id="xp-percent">0%</output>)</span>
+              <span class="stat-value"><output id="xp-current">0</output>/<output id="xp-max">100</output> (<output
+                  id="xp-percent">0%</output>)</span>
             </div>
             <div class="bar-frame-8bit">
               <div id="xp-bar-fill" class="bar-fill-8bit exp-fill" style="width: 0%;"></div>
@@ -82,12 +86,12 @@
 
     <aside class="shop-section" aria-label="ร้านค้าอัปเกรด">
       <h2>🛒 ร้านค้าอัปเกรด</h2>
-      
+
       <ul class="upgrade-list">
         <li>
           <button id="upgrade-click" class="upgrade-btn" disabled>
             <div class="upgrade-info">
-              <strong>👆 นิ้วทองคำ (Click Power)</strong>
+              <strong>👆 นิ้วทองคำ</strong>
               <span>+1 คุกกี้ต่อการคลิก</span>
             </div>
             <div class="upgrade-cost">
@@ -99,7 +103,7 @@
         <li>
           <button id="upgrade-auto" class="upgrade-btn" disabled>
             <div class="upgrade-info">
-              <strong>👵 คุณยายช่วยอบ (Auto Clicker)</strong>
+              <strong>👵 คุณยายช่วยอบ</strong>
               <span>+1 คุกกี้ทุกๆ 1 วินาที</span>
             </div>
             <div class="upgrade-cost">
@@ -154,10 +158,10 @@
       <h2>🕹️ 8-BIT BUTTONS</h2>
       <div class="button-8bit-group">
         <button id="btn-retro-boost" class="btn-8bit">
-          ⚡ BOOST 2X (Retro Font)
+          ⚡ BOOST 2X
         </button>
         <button id="btn-reset-game" class="btn-8bit btn-danger font-normal">
-          🔄 Reset Game (Normal Font)
+          🔄 Reset Game
         </button>
       </div>
     </section>
@@ -166,4 +170,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>

@@ -181,7 +181,7 @@ if (btnRetroBoost) {
     setTimeout(() => {
       clickPower = originalClickPower;
       isBoostActive = false;
-      btnRetroBoost.textContent = "⚡ BOOST 2X (Retro Font)";
+      btnRetroBoost.textContent = "⚡ BOOST 2X";
       btnRetroBoost.style.background = "";
       updateUI();
     }, 10000);
