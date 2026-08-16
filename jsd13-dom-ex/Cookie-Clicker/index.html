@@ -70,6 +70,45 @@
       </ul>
     </aside>
 
+    <!-- 8-Bit Retro Stats Table Component -->
+    <section class="table-section-8bit" aria-label="ตารางสถิติ 8-Bit">
+      <h2>📜 8-BIT STATS TABLE</h2>
+      <div class="table-8bit-wrapper">
+        <table class="table-8bit">
+          <caption class="caption-8bit">สรุปข้อมูลการเล่นล่าสุด (Live Stats)</caption>
+          <thead>
+            <tr>
+              <th>รายการ</th>
+              <th>สถานะ</th>
+              <th class="text-right">จำนวน</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-pixel">🍪 อบคุกกี้ทั้งหมด</td>
+              <td><span class="badge-8bit green">ACTIVE</span></td>
+              <td class="text-right" id="table-total-cookies">0</td>
+            </tr>
+            <tr>
+              <td class="font-pixel">👆 พลังการคลิก</td>
+              <td><span class="badge-8bit blue">LVL UP</span></td>
+              <td class="text-right" id="table-click-power">1</td>
+            </tr>
+            <tr>
+              <td class="font-pixel">👵 ผลิตอัตโนมัติ</td>
+              <td><span class="badge-8bit yellow">AUTO</span></td>
+              <td class="text-right" id="table-cps">0/s</td>
+            </tr>
+            <tr>
+              <td class="font-pixel">🎯 จำนวนคลิกทั้งหมด</td>
+              <td><span class="badge-8bit purple">CLICKS</span></td>
+              <td class="text-right" id="table-total-clicks">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
   </main>
 
   <script src="script.js"></script>

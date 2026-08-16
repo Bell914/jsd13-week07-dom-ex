@@ -336,3 +336,131 @@ body::before {
   100% { transform: scale(1.02); }
 }
 
+/* ==========================================
+   8-Bit Retro Table Component
+   ========================================== */
+.table-section-8bit {
+  margin-top: 28px;
+  text-align: left;
+}
+
+.table-section-8bit h2 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.85rem;
+  color: #fbbf24;
+  text-shadow: 2px 2px #78350f;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.table-8bit-wrapper {
+  background: #0f172a;
+  border: 4px solid #000;
+  box-shadow: 
+    0 -4px 0 -2px #1e293b,
+    0 4px 0 -2px #1e293b,
+    -4px 0 0 -2px #1e293b,
+    4px 0 0 -2px #1e293b,
+    inset 0 0 0 2px #334155;
+  border-radius: 4px;
+  padding: 8px;
+  overflow-x: auto;
+}
+
+.table-8bit {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  color: #e2e8f0;
+}
+
+.caption-8bit {
+  caption-side: bottom;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.52rem;
+  color: #64748b;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.table-8bit thead tr {
+  background: #1e293b;
+  border-bottom: 3px solid #000;
+}
+
+.table-8bit th {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.58rem;
+  padding: 10px 8px;
+  color: #38bdf8;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.table-8bit tbody tr {
+  border-bottom: 2px solid #1e293b;
+  transition: background 0.15s ease;
+}
+
+.table-8bit tbody tr:nth-child(even) {
+  background: rgba(30, 41, 59, 0.35);
+}
+
+.table-8bit tbody tr:hover {
+  background: rgba(56, 189, 248, 0.1);
+}
+
+.table-8bit td {
+  padding: 10px 8px;
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+.font-pixel {
+  font-size: 0.82rem;
+}
+
+.text-right {
+  text-align: right;
+  font-family: 'Outfit', 'Press Start 2P', sans-serif;
+  font-weight: 700;
+  color: #fbbf24;
+}
+
+/* 8-Bit Retro Status Badges */
+.badge-8bit {
+  display: inline-block;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.48rem;
+  padding: 4px 6px;
+  border-radius: 2px;
+  border: 1px solid #000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-8bit.green {
+  background: #15803d;
+  color: #86efac;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
+}
+
+.badge-8bit.blue {
+  background: #0369a1;
+  color: #7dd3fc;
+  box-shadow: 0 0 6px rgba(56, 189, 248, 0.4);
+}
+
+.badge-8bit.yellow {
+  background: #854d0e;
+  color: #fef08a;
+  box-shadow: 0 0 6px rgba(250, 204, 21, 0.4);
+}
+
+.badge-8bit.purple {
+  background: #6b21a8;
+  color: #d8b4fe;
+  box-shadow: 0 0 6px rgba(192, 132, 252, 0.4);
+}
+
+

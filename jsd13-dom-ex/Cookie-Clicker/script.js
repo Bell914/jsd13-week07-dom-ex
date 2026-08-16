@@ -6,12 +6,13 @@ let clickPower = 1;
 let cps = 0;
 let costClick = 10;
 let costAuto = 50;
+let totalCookies = 0;
+let totalClicks = 0;
 
 // สถานะเลเวลและ 8-Bit XP System
 let level = 1;
 let xp = 0;
 let xpMax = 100;
-let isLevelingUp = false;
 
 // 2. อ้างอิง DOM Elements
 const scoreElement = document.getElementById("score");
@@ -30,6 +31,12 @@ const levelUpBanner = document.getElementById("level-up-banner");
 const xpCurrentElement = document.getElementById("xp-current");
 const xpMaxElement = document.getElementById("xp-max");
 
+// อ้างอิง DOM ของ 8-Bit Table
+const tableTotalCookies = document.getElementById("table-total-cookies");
+const tableClickPower = document.getElementById("table-click-power");
+const tableCps = document.getElementById("table-cps");
+const tableTotalClicks = document.getElementById("table-total-clicks");
+
 // 3. ฟังก์ชันอัปเดตหน้าจอและการเปิด/ปิดปุ่มอัปเกรด
 function updateUI() {
   scoreElement.textContent = score;
@@ -45,6 +52,12 @@ function updateUI() {
   const percent = Math.min(100, Math.floor((xp / xpMax) * 100));
   if (xpPercentElement) xpPercentElement.textContent = `${percent}%`;
   if (xpBarFill) xpBarFill.style.width = `${percent}%`;
+
+  // อัปเดตข้อมูลในตาราง 8-Bit Table
+  if (tableTotalCookies) tableTotalCookies.textContent = totalCookies;
+  if (tableClickPower) tableClickPower.textContent = clickPower;
+  if (tableCps) tableCps.textContent = `${cps}/s`;
+  if (tableTotalClicks) tableTotalClicks.textContent = totalClicks;
 
   // เปิดใช้งานปุ่มเมื่อมีคุกกี้เพียงพอ
   upgradeClickBtn.disabled = score < costClick;
@@ -81,6 +94,8 @@ function triggerLevelUpAnimation() {
 // 6. เมื่อคลิกที่คุกกี้ (ได้คะแนน + ได้รับ XP)
 cookieBtn.addEventListener("click", () => {
   score += clickPower;
+  totalCookies += clickPower;
+  totalClicks += 1;
   addXP(10 * clickPower); // ยิ่งพลังคลิกเยอะ ยิ่งได้ XP ไว
   updateUI();
 });
@@ -111,6 +126,7 @@ upgradeAutoBtn.addEventListener("click", () => {
 setInterval(() => {
   if (cps > 0) {
     score += cps;
+    totalCookies += cps;
     addXP(cps * 3);
     updateUI();
   }
