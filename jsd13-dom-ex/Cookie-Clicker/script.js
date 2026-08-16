@@ -115,18 +115,44 @@ function triggerLevelUpAnimation() {
   levelUpBanner.textContent = `⭐ LEVEL ${level}! ⭐`;
   levelUpBanner.classList.remove("hidden");
 
+  // อัปเดตคำพูดเชฟเมื่อเลเวลอัป
+  setChefSpeech(`"🌟 ว้าว! เลเวล ${level} แล้ว! เตาอบไฟแรงขึ้น!"`);
+
   // ปิดแบนเนอร์ Level Up หลังจากแสดงผล 1.8 วินาที
   setTimeout(() => {
     levelUpBanner.classList.add("hidden");
   }, 1800);
 }
 
-// 6. เมื่อคลิกที่คุกกี้ (ได้คะแนน + ได้รับ XP)
+// 5.1 ระบบคำพูดเชฟ (Chef Dialogue)
+const chefSpeech = document.getElementById("chef-speech");
+const chefQuotes = [
+  "กลิ่นหอมฟุ้งไปทั่วครัวเลย! 🍪",
+  "เร่งมือเข้าคุกกี้กำลังกรอบอร่อย! ✨",
+  "ช็อกโกแลตชิปละลายเยิ้มๆ เลย! 🍫",
+  "อบเสร็จอีกชิ้นแล้ว ฝีมือยอดเยี่ยม! 👨‍🍳",
+  "สูตรนี้เด็ดสุดในปฐพี! 🔥"
+];
+
+function setChefSpeech(text) {
+  if (chefSpeech) {
+    chefSpeech.textContent = text;
+  }
+}
+
+// 6. เมื่อคลิกที่คุกกี้ (ได้คะแนน + ได้รับ XP + เชฟตอบสนอง)
 cookieBtn.addEventListener("click", () => {
   score += clickPower;
   totalCookies += clickPower;
   totalClicks += 1;
   addXP(10 * clickPower); // ยิ่งพลังคลิกเยอะ ยิ่งได้ XP ไว
+
+  // สุ่มคำพูดเชฟทุกๆ 10 คลิก
+  if (totalClicks % 8 === 0) {
+    const randomQuote = chefQuotes[Math.floor(Math.random() * chefQuotes.length)];
+    setChefSpeech(`"${randomQuote}"`);
+  }
+
   updateUI();
 });
 
@@ -137,6 +163,7 @@ upgradeClickBtn.addEventListener("click", () => {
     clickPower += 1;
     costClick = Math.floor(costClick * 1.5); // เพิ่มราคาขึ้น 1.5 เท่า
     addXP(25); // โบนัส XP เมื่อซื้ออัปเกรด
+    setChefSpeech('"👆 นิ้วทองคำพร้อมลุย! อบคุกกี้ไวขึ้น!"');
     updateUI();
   }
 });
@@ -148,6 +175,7 @@ upgradeAutoBtn.addEventListener("click", () => {
     cps += 1;
     costAuto = Math.floor(costAuto * 1.5); // เพิ่มราคาขึ้น 1.5 เท่า
     addXP(60); // โบนัส XP เมื่อซื้ออัปเกรด
+    setChefSpeech('"👵 คุณยายเข้าครัวแล้ว! ผลิตอัตโนมัติ 24 ชม.!"');
     updateUI();
   }
 });

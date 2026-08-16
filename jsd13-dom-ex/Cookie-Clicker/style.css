@@ -654,5 +654,280 @@ body::before {
     0 0 0 0 #000;
 }
 
+/* ==========================================
+   2-Column Layout & 8-Bit Chef Kitchen Station
+   ========================================== */
+.game-wrapper-2col {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+  max-width: 860px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 820px) {
+  .game-wrapper-2col {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.chef-station-8bit {
+  background: #0f172a;
+  border: 4px solid #000;
+  box-shadow: 
+    0 -6px 0 0 #1e293b,
+    0 6px 0 0 #1e293b,
+    -6px 0 0 0 #1e293b,
+    6px 0 0 0 #1e293b,
+    0 0 0 4px #000,
+    0 25px 50px rgba(0, 0, 0, 0.85);
+  border-radius: 4px;
+  padding: 24px 20px;
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+  image-rendering: pixelated;
+}
+
+.chef-station-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #1e293b;
+}
+
+.chef-station-header h2 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.78rem;
+  color: #fbbf24;
+  text-shadow: 2px 2px #78350f;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.chef-live-badge {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  background: #ef4444;
+  color: #fff;
+  padding: 4px 6px;
+  border: 2px solid #000;
+  animation: pulseGlow 1.5s infinite alternate;
+}
+
+.chef-stage {
+  background: #1e293b;
+  border: 3px solid #000;
+  box-shadow: 
+    inset -2px -2px 0px 0px #0f172a,
+    inset 2px 2px 0px 0px #334155;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 18px;
+  position: relative;
+}
+
+/* Floating Speech Bubble */
+.chef-speech-bubble {
+  font-family: 'Prompt', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: #ffffff;
+  color: #0f172a;
+  border: 3px solid #000;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  position: relative;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.4);
+  animation: bubbleFloat 3s ease-in-out infinite alternate;
+  line-height: 1.3;
+}
+
+.chef-speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px 8px 0;
+  border-style: solid;
+  border-color: #ffffff transparent;
+  display: block;
+  width: 0;
+}
+
+@keyframes bubbleFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+/* Animated Chef Character */
+.chef-character-box {
+  margin-bottom: 14px;
+  user-select: none;
+}
+
+.chef-body {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 4rem;
+  line-height: 1;
+  animation: chefBounce 1.8s ease-in-out infinite;
+}
+
+.chef-action-tool {
+  font-size: 2.2rem;
+  position: absolute;
+  right: -20px;
+  bottom: 0px;
+  animation: chefStir 1.2s ease-in-out infinite;
+}
+
+@keyframes chefBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes chefStir {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-25deg) translateY(-4px); }
+}
+
+.chef-name-tag {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.58rem;
+  color: #38bdf8;
+  margin-top: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* 8-Bit Pixel Oven */
+.pixel-oven-station {
+  background: #0f172a;
+  border: 3px solid #000;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.oven-roof {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  color: #f97316;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.oven-chamber {
+  background: #451a03;
+  border: 2px solid #000;
+  border-radius: 2px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: inset 0 0 12px rgba(234, 88, 12, 0.6);
+}
+
+.oven-flame {
+  font-size: 1.4rem;
+  animation: flameDance 0.6s ease-in-out infinite alternate;
+}
+
+.flame-2 {
+  animation-delay: 0.3s;
+}
+
+.oven-baking-cookie {
+  font-size: 2rem;
+  animation: bakingRotate 4s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.8));
+}
+
+@keyframes flameDance {
+  0% { transform: scale(0.9) rotate(-3deg); }
+  100% { transform: scale(1.15) rotate(3deg); }
+}
+
+@keyframes bakingRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.oven-meter {
+  height: 8px;
+  background: #1e293b;
+  border: 2px solid #000;
+  margin: 8px 0 6px;
+  overflow: hidden;
+}
+
+.oven-heat-fill {
+  height: 100%;
+  width: 75%;
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.8);
+  animation: heatPulsing 2s ease-in-out infinite alternate;
+}
+
+@keyframes heatPulsing {
+  0% { width: 65%; }
+  100% { width: 90%; }
+}
+
+.oven-status-text {
+  font-family: 'Prompt', sans-serif;
+  font-size: 0.72rem;
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+/* Chef Secret Recipes */
+.chef-secret-recipes {
+  text-align: left;
+  background: #1e293b;
+  border: 3px solid #000;
+  border-radius: 4px;
+  padding: 12px 14px;
+  box-shadow: 
+    inset -2px -2px 0px 0px #0f172a,
+    inset 2px 2px 0px 0px #334155;
+}
+
+.chef-secret-recipes h3 {
+  font-family: 'Prompt', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fbbf24;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 4px;
+}
+
+.recipe-tip-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: 'Prompt', sans-serif;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+.recipe-tip-list strong {
+  color: #f1f5f9;
+}
+
+
 
 

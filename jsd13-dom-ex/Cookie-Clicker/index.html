@@ -14,14 +14,16 @@
 
 <body>
 
-  <main class="game-container">
+  <div class="game-wrapper-2col">
+    <!-- Main Cookie Clicker Game -->
+    <main class="game-container">
 
-    <header class="header">
-      <h1>🍪 Cookie Clicker</h1>
-      <div class="stats">
-        <p>จำนวนคุกกี้: <output id="score">0</output> ชิ้น</p>
-        <p class="cps-text">ผลิตอัตโนมัติ: <output id="cps">0</output> ชิ้น/วินาที</p>
-      </div>
+      <header class="header">
+        <h1>🍪 Cookie Clicker</h1>
+        <div class="stats">
+          <p>จำนวนคุกกี้: <output id="score">0</output> ชิ้น</p>
+          <p class="cps-text">ผลิตอัตโนมัติ: <output id="cps">0</output> ชิ้น/วินาที</p>
+        </div>
 
       <!-- 8-Bit Player Profile Card Component -->
       <section class="player-profile-card-8bit" aria-label="การ์ดโปรไฟล์ผู้เล่น 8-Bit">
@@ -166,7 +168,58 @@
       </div>
     </section>
 
-  </main>
+    </main>
+
+    <!-- 8-Bit Animated Chef's Bakery Kitchen Station -->
+    <aside class="chef-station-8bit" aria-label="ห้องครัวเชฟทำอาหาร 8-Bit">
+      <div class="chef-station-header">
+        <h2>👨‍🍳 CHEF'S KITCHEN</h2>
+        <span class="chef-live-badge">BAKING LIVE</span>
+      </div>
+
+      <!-- Chef Animated Stage -->
+      <div class="chef-stage">
+        <!-- Floating Speech Bubble -->
+        <div class="chef-speech-bubble" id="chef-speech">
+          "ยินดีต้อนรับสู่ครัว! อบคุกกี้กันเลย 🍪🔥"
+        </div>
+
+        <!-- Animated Pixel Chef Character -->
+        <div class="chef-character-box" id="chef-box">
+          <div class="chef-body">
+            <span class="chef-icon">👨‍🍳</span>
+            <span class="chef-action-tool" id="chef-tool">🥣</span>
+          </div>
+          <p class="chef-name-tag">Head Chef Cookie</p>
+        </div>
+
+        <!-- 8-Bit Pixel Oven with Fire & Cookies -->
+        <div class="pixel-oven-station">
+          <div class="oven-roof">♨️ RETRO OVEN ♨️</div>
+          <div class="oven-chamber">
+            <span class="oven-flame">🔥</span>
+            <span class="oven-baking-cookie" id="oven-cookie">🍪</span>
+            <span class="oven-flame flame-2">🔥</span>
+          </div>
+          <div class="oven-meter">
+            <div class="oven-heat-fill" id="oven-heat-fill"></div>
+          </div>
+          <div class="oven-status-text" id="oven-status">อุณหภูมิ: 180°C กำลังอบหอมกรุ่น</div>
+        </div>
+      </div>
+
+      <!-- Chef Recipe Book & Tips -->
+      <div class="chef-secret-recipes">
+        <h3>📜 เคล็ดลับความอร่อย</h3>
+        <ul class="recipe-tip-list">
+          <li>✨ <strong>แป้งสูตรพิเศษ</strong>: ยิ่งกดคลิก ยิ่งได้ XP เพิ่ม</li>
+          <li>👵 <strong>สูตรคุณยาย</strong>: ช่วยผลิตคุกกี้อัตโนมัติ 24 ชม.</li>
+          <li>⚡ <strong>Boost Power</strong>: เร่งเตาอบคูณ 2 เท่า!</li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
 
   <script src="script.js"></script>
 </body>
