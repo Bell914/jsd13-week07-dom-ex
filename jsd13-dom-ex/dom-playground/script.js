@@ -16,6 +16,8 @@ const cardImg = document.getElementById("card");
 cardImg.innerHTML = `<img src="path/to/image.jpg" alt="description">`;
 
 // 3. classList            -> #themeBtn, .card
+const themeBtn = document.getElementById("themeBtn");
+const card = document.querySelector(".card");
 
 // 4. Create & Remove      -> #addTaskBtn, #resetTasksBtn, #tasks
 
