@@ -41,185 +41,202 @@ body::before {
 .game-container {
   position: relative;
   z-index: 1;
-  background: rgba(30, 41, 59, 0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 28px;
-  padding: 32px 28px;
+  background: #0f172a;
+  border: 4px solid #000;
+  box-shadow: 
+    0 -6px 0 0 #1e293b,
+    0 6px 0 0 #1e293b,
+    -6px 0 0 0 #1e293b,
+    6px 0 0 0 #1e293b,
+    0 0 0 4px #000,
+    0 25px 50px rgba(0, 0, 0, 0.85);
+  border-radius: 4px;
+  padding: 28px 24px;
   width: 100%;
-  max-width: 440px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6),
-              0 0 0 1px rgba(255, 255, 255, 0.05);
+  max-width: 460px;
   text-align: center;
+  image-rendering: pixelated;
 }
 
 .header h1 {
-  font-family: 'Outfit', 'Prompt', sans-serif;
-  font-size: 2.1rem;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  margin-bottom: 18px;
-  background: linear-gradient(135deg, #ffffff 40%, #fbbf24);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+  color: #fbbf24;
+  text-shadow: 3px 3px #78350f, 0 0 14px rgba(251, 191, 36, 0.4);
 }
 
 .stats {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  padding: 16px 20px;
-  margin-bottom: 24px;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  background: #1e293b;
+  border: 3px solid #000;
+  box-shadow: 
+    inset -2px -2px 0px 0px #0f172a,
+    inset 2px 2px 0px 0px #334155;
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
 }
 
 .stats p {
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-family: 'Prompt', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
   margin-bottom: 6px;
   color: #e2e8f0;
 }
 
 #score {
-  font-family: 'Outfit', sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.15rem;
+  font-weight: normal;
   color: #fbbf24;
-  text-shadow: 0 0 16px rgba(251, 191, 36, 0.45);
+  text-shadow: 2px 2px #78350f;
   margin: 0 4px;
 }
 
 .cps-text {
-  font-size: 0.9rem !important;
+  font-size: 0.8rem !important;
   color: #94a3b8 !important;
 }
 
 #cps {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 700;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.85rem;
+  font-weight: normal;
   color: #34d399;
-  text-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
+  text-shadow: 2px 2px #065f46;
 }
 
 .cookie-section {
   position: relative;
-  margin-bottom: 28px;
-  padding: 10px 0;
+  margin-bottom: 20px;
+  padding: 8px 0;
 }
 
 .cookie-btn {
   background: none;
   border: none;
-  font-size: 8rem;
+  font-size: 7.5rem;
   line-height: 1;
   cursor: pointer;
   outline: none;
   user-select: none;
   display: inline-block;
-  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.55));
-  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.15s ease;
+  filter: drop-shadow(0 10px 0 #000);
+  transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.1s ease;
 }
 
 .cookie-btn:hover {
-  transform: scale(1.1) rotate(5deg);
-  filter: drop-shadow(0 20px 30px rgba(245, 158, 11, 0.35));
+  transform: scale(1.08) rotate(4deg);
+  filter: drop-shadow(0 14px 0 #000);
 }
 
 .cookie-btn:active {
-  transform: scale(0.92) rotate(-5deg);
-  filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.6));
+  transform: scale(0.92) rotate(-4deg);
+  filter: drop-shadow(0 4px 0 #000);
 }
 
 .click-info {
-  margin-top: 14px;
-  font-size: 0.88rem;
-  font-weight: 400;
+  margin-top: 12px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.52rem;
   color: #94a3b8;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.5px;
 }
 
 .shop-section {
   text-align: left;
+  margin-top: 16px;
 }
 
 .shop-section h2 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 14px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  color: #f1f5f9;
-  letter-spacing: 0.3px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1e293b;
+  color: #fbbf24;
+  text-shadow: 2px 2px #78350f;
+  letter-spacing: 0.5px;
 }
 
 .upgrade-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .upgrade-btn {
   width: 100%;
-  background: rgba(30, 41, 59, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #1e293b;
+  border: 3px solid #000;
   color: #ffffff;
-  padding: 14px 18px;
-  border-radius: 16px;
+  padding: 12px 14px;
+  border-radius: 4px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.05s ease, box-shadow 0.05s ease;
   text-align: left;
   position: relative;
-  overflow: hidden;
+  box-shadow: 
+    inset -3px -3px 0px 0px #0f172a,
+    inset 3px 3px 0px 0px #475569,
+    0 3px 0 0 #000;
 }
 
 .upgrade-btn:hover:not(:disabled) {
-  background: rgba(51, 65, 85, 0.75);
-  transform: translateY(-2px);
-  border-color: rgba(251, 191, 36, 0.4);
-  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.35),
-              0 0 12px rgba(251, 191, 36, 0.15);
+  background: #334155;
+  box-shadow: 
+    inset -3px -3px 0px 0px #1e293b,
+    inset 3px 3px 0px 0px #64748b,
+    0 3px 0 0 #000;
 }
 
 .upgrade-btn:active:not(:disabled) {
-  transform: translateY(0);
+  transform: translateY(3px);
+  box-shadow: 
+    inset -1px -1px 0px 0px #0f172a,
+    inset 1px 1px 0px 0px #475569,
+    0 0 0 0 #000;
 }
 
 .upgrade-btn:disabled {
-  opacity: 0.4;
+  opacity: 0.45;
   cursor: not-allowed;
-  filter: grayscale(0.7);
-  background: rgba(15, 23, 42, 0.4);
+  filter: grayscale(0.85);
+  background: #0f172a;
 }
 
 .upgrade-info strong {
   display: block;
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 3px;
+  font-family: 'Prompt', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-bottom: 2px;
   color: #f8fafc;
 }
 
 .upgrade-info span {
-  font-size: 0.78rem;
+  font-family: 'Prompt', sans-serif;
+  font-size: 0.72rem;
   color: #94a3b8;
 }
 
 .upgrade-cost {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 700;
-  font-size: 0.95rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.58rem;
   color: #fbbf24;
-  background: rgba(245, 158, 11, 0.12);
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  padding: 6px 12px;
-  border-radius: 20px;
+  background: #0f172a;
+  border: 2px solid #000;
+  padding: 6px 8px;
+  border-radius: 2px;
   white-space: nowrap;
   letter-spacing: 0.3px;
+  box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.4);
 }
 
 /* ==========================================
