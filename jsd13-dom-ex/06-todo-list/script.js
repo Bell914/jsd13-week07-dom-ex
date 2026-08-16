@@ -35,10 +35,8 @@ todoForm.addEventListener("submit", (event) => {
 //
 // Hint: use document.createElement, textContent, and append/appendChild.
 
-
 // TODO 4: When the delete button inside an <li> is clicked, remove that <li>
 // from the list. (Attach this listener when you create the button in TODO 3.)
-
 
 // TODO 5: When the todo-text span inside an <li> is clicked, toggle the
 // "completed" class on the <li>. (Attach this listener when you create the
@@ -48,8 +46,9 @@ function addTodo(text) {
 
     const span = document.createElement("span");
     span.classList.add("todo-text");
+
     span.textContent = text;
-    
+
     span.addEventListener("click", () => {
         li.classList.toggle("completed");
     });
@@ -58,6 +57,7 @@ function addTodo(text) {
     deleteBtn.classList.add("delete-btn");
     deleteBtn.textContent = "x";
 
+
     deleteBtn.addEventListener("click", () => {
         li.remove();
     });
@@ -65,4 +65,5 @@ function addTodo(text) {
     li.appendChild(span);
     li.appendChild(deleteBtn);
     todoList.appendChild(li);
+
 }
