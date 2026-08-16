@@ -20,6 +20,25 @@ const themeBtn = document.getElementById("themeBtn");
 const card = document.querySelector(".card");
 
 // 4. Create & Remove      -> #addTaskBtn, #resetTasksBtn, #tasks
+const addTaskBtn = document.getElementById("addTaskBtn");
+const resetTasksBtn = document.getElementById("resetTasksBtn");
+const tasks = document.getElementById("tasks");
+
+addTaskBtn.addEventListener("click", () => {
+  const li = document.createElement("li");
+  li.textContent = "New Task";
+  li.classList.add("task-item");
+
+  li.addEventListener("click", () => {
+    li.remove();
+  });
+
+  tasks.append(li);
+});
+
+resetTasksBtn.addEventListener("click", () => {
+  tasks.innerHTML = "";
+});
 
 // 5. Events               -> #click-me, #list, #signupForm, #email, .error
 const btn= document.querySelector("#click-me");
